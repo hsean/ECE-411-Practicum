@@ -1,0 +1,3 @@
+﻿height 0.12 in
+inner circle: 0.1 in
+middle circle: 0.22 in

@@ -1,0 +1,15 @@
+height 0.12 in
+inner circle: 0.1 in
+middle circle: 0.22 in
+outer circle: 0.27
+
+THREADED ROD INFO
+A threaded rod using metric threading that can be customized by setting parameters in file properties (right click, properties in windows explorer).
+Parameters should be changed before opening of the file in Solidworks. 
+Then, if Solidworks doesn't automatically refresh the part using your parameters, just do "CTRL+B" to force a rebuild.
+customizable parameters: 
+- diameter (=diametre_mm) 
+- thread (pitch) size (=pas_mm) 
+- length (=longueur_mm)
+More information on ISO metric threading parameters can be found here : 
+http://en.wikipedia.org/wiki/ISO_metric_screw_thread
