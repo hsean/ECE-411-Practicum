@@ -1,0 +1,42 @@
+
+*************************************************
+* Week of 25 October 2015
+*************************************************
+
+Last Week
+---------------
+  
+
+Next Week
+----------------
+  
+
+Issues
+----------
+  
+
+
+*************************************************
+* Week of 18 October 2015
+*************************************************
+
+Last Week
+---------------
+  Decided on material to use for base and tray
+  Purchased some electrical components
+  Tested microcontroller using Atmel studio
+  Changed dimension of design to better fit components
+
+Next Week
+----------------
+  Complete final mechanical design
+  Purchase all parts
+  Make schematic
+  Design third servo arm
+  Test communication between accelerometer and microcontroller 
+  Test communication between microcontroller and servos
+  Check available cutting tools for base and tray cutting
+
+Issues
+----------
+  Need to redesign third leveling arm using a ball mount
