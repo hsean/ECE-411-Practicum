@@ -8232,10 +8232,10 @@ Source: www.kingbright.com</description>
 <part name="LED2_BLUE" library="led" deviceset="LED" device="SMT1206"/>
 <part name="LED3_YELLOW" library="led" deviceset="LED" device="SMT1206"/>
 <part name="LED4_RED" library="led" deviceset="LED" device="SMT1206"/>
-<part name="LED_RESISTOR_1" library="rcl" deviceset="R-US_" device="R1206"/>
-<part name="LED_RESISTOR_2" library="rcl" deviceset="R-US_" device="R1206"/>
-<part name="LED_RESISTOR_3" library="rcl" deviceset="R-US_" device="R1206"/>
-<part name="LED_RESISTOR_4" library="rcl" deviceset="R-US_" device="R1206"/>
+<part name="LED_RESISTOR_1" library="rcl" deviceset="R-US_" device="R1206" value="TBD"/>
+<part name="LED_RESISTOR_2" library="rcl" deviceset="R-US_" device="R1206" value="TBD"/>
+<part name="LED_RESISTOR_3" library="rcl" deviceset="R-US_" device="R1206" value="TBD"/>
+<part name="LED_RESISTOR_4" library="rcl" deviceset="R-US_" device="R1206" value="TBD"/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>

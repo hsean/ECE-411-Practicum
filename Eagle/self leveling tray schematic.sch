@@ -8588,7 +8588,6 @@ GPIO Output</text>
 <pinref part="PIN_VCC_REGULATOR_D24V5F3" gate="A" pin="4"/>
 <wire x1="50.8" y1="116.84" x2="43.18" y2="116.84" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="116.84" x2="43.18" y2="109.22" width="0.1524" layer="91"/>
-<label x="55.88" y="105.41" size="1.778" layer="95"/>
 <wire x1="43.18" y1="109.22" x2="60.96" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="109.22" x2="60.96" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="P+1" gate="VCC" pin="VCC"/>
@@ -8620,7 +8619,6 @@ GPIO Output</text>
 <segment>
 <pinref part="PIN_ACCELEROMETER_MMA8452Q" gate="A" pin="1"/>
 <wire x1="170.18" y1="116.84" x2="181.61" y2="116.84" width="0.1524" layer="91"/>
-<label x="148.59" y="128.27" size="1.778" layer="95"/>
 <wire x1="170.18" y1="116.84" x2="170.18" y2="119.38" width="0.1524" layer="91"/>
 <pinref part="P+5" gate="VCC" pin="VCC"/>
 </segment>

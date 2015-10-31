@@ -8296,7 +8296,7 @@ Source: www.kingbright.com</description>
 <part name="BYPASS_CAP_1" library="rcl" deviceset="C-EU" device="C1206" value="100 nF"/>
 <part name="BYPASS_CAP_2" library="rcl" deviceset="C-EU" device="C1206" value="100 nF"/>
 <part name="LED1_GREEN" library="led" deviceset="LED" device="SMT1206"/>
-<part name="LED2_BLUE" library="led" deviceset="LED" device="SMT1206"/>
+<part name="LED2_YELLOW" library="led" deviceset="LED" device="SMT1206"/>
 <part name="LED3_YELLOW" library="led" deviceset="LED" device="SMT1206"/>
 <part name="LED4_RED" library="led" deviceset="LED" device="SMT1206"/>
 <part name="LED_RESISTOR_1" library="rcl" deviceset="R-US_" device="R1206" value="TBD"/>
@@ -8360,7 +8360,7 @@ Source: www.kingbright.com</description>
 <instance part="BYPASS_CAP_1" gate="G$1" x="83.82" y="101.6"/>
 <instance part="BYPASS_CAP_2" gate="G$1" x="83.82" y="76.2"/>
 <instance part="LED1_GREEN" gate="G$1" x="228.6" y="60.96" rot="R90"/>
-<instance part="LED2_BLUE" gate="G$1" x="228.6" y="68.58" rot="R90"/>
+<instance part="LED2_YELLOW" gate="G$1" x="228.6" y="68.58" rot="R90"/>
 <instance part="LED3_YELLOW" gate="G$1" x="228.6" y="76.2" rot="R90"/>
 <instance part="LED4_RED" gate="G$1" x="228.6" y="83.82" rot="R90"/>
 <instance part="LED_RESISTOR_1" gate="G$1" x="193.04" y="60.96"/>
@@ -8476,7 +8476,7 @@ Source: www.kingbright.com</description>
 <segment>
 <pinref part="LED1_GREEN" gate="G$1" pin="C"/>
 <wire x1="233.68" y1="60.96" x2="236.22" y2="60.96" width="0.1524" layer="91"/>
-<pinref part="LED2_BLUE" gate="G$1" pin="C"/>
+<pinref part="LED2_YELLOW" gate="G$1" pin="C"/>
 <wire x1="233.68" y1="68.58" x2="236.22" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="60.96" x2="236.22" y2="68.58" width="0.1524" layer="91"/>
 <pinref part="LED3_YELLOW" gate="G$1" pin="C"/>
@@ -8707,7 +8707,7 @@ Source: www.kingbright.com</description>
 <net name="N$3" class="0">
 <segment>
 <pinref part="LED_RESISTOR_2" gate="G$1" pin="2"/>
-<pinref part="LED2_BLUE" gate="G$1" pin="A"/>
+<pinref part="LED2_YELLOW" gate="G$1" pin="A"/>
 <wire x1="198.12" y1="68.58" x2="226.06" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 </net>

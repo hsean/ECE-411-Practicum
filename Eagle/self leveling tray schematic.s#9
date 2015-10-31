@@ -8228,10 +8228,15 @@ Source: www.kingbright.com</description>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="BYPASS_CAP_1" library="rcl" deviceset="C-EU" device="C1206" value="100 nF"/>
 <part name="BYPASS_CAP_2" library="rcl" deviceset="C-EU" device="C1206" value="100 nF"/>
-<part name="LED1" library="led" deviceset="LED" device="SMT1206"/>
-<part name="LED2" library="led" deviceset="LED" device="SMT1206"/>
-<part name="LED3" library="led" deviceset="LED" device="SMT1206"/>
-<part name="LED4" library="led" deviceset="LED" device="SMT1206"/>
+<part name="LED1_GREEN" library="led" deviceset="LED" device="SMT1206"/>
+<part name="LED2_BLUE" library="led" deviceset="LED" device="SMT1206"/>
+<part name="LED3_YELLOW" library="led" deviceset="LED" device="SMT1206"/>
+<part name="LED4_RED" library="led" deviceset="LED" device="SMT1206"/>
+<part name="LED_RESISTOR_1" library="rcl" deviceset="R-US_" device="R1206"/>
+<part name="LED_RESISTOR_2" library="rcl" deviceset="R-US_" device="R1206"/>
+<part name="LED_RESISTOR_3" library="rcl" deviceset="R-US_" device="R1206"/>
+<part name="LED_RESISTOR_4" library="rcl" deviceset="R-US_" device="R1206"/>
+<part name="GND11" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8284,10 +8289,15 @@ Source: www.kingbright.com</description>
 <instance part="GND10" gate="1" x="83.82" y="66.04"/>
 <instance part="BYPASS_CAP_1" gate="G$1" x="83.82" y="101.6"/>
 <instance part="BYPASS_CAP_2" gate="G$1" x="83.82" y="76.2"/>
-<instance part="LED1" gate="G$1" x="172.72" y="77.47"/>
-<instance part="LED2" gate="G$1" x="182.88" y="77.47"/>
-<instance part="LED3" gate="G$1" x="193.04" y="77.47"/>
-<instance part="LED4" gate="G$1" x="201.93" y="77.47"/>
+<instance part="LED1_GREEN" gate="G$1" x="228.6" y="60.96" rot="R90"/>
+<instance part="LED2_BLUE" gate="G$1" x="228.6" y="68.58" rot="R90"/>
+<instance part="LED3_YELLOW" gate="G$1" x="228.6" y="76.2" rot="R90"/>
+<instance part="LED4_RED" gate="G$1" x="228.6" y="83.82" rot="R90"/>
+<instance part="LED_RESISTOR_1" gate="G$1" x="193.04" y="60.96"/>
+<instance part="LED_RESISTOR_2" gate="G$1" x="193.04" y="68.58"/>
+<instance part="LED_RESISTOR_3" gate="G$1" x="193.04" y="76.2"/>
+<instance part="LED_RESISTOR_4" gate="G$1" x="193.04" y="83.82"/>
+<instance part="GND11" gate="1" x="241.3" y="55.88"/>
 </instances>
 <busses>
 </busses>
@@ -8389,6 +8399,25 @@ Source: www.kingbright.com</description>
 <pinref part="BYPASS_CAP_2" gate="G$1" pin="2"/>
 <wire x1="83.82" y1="71.12" x2="83.82" y2="68.58" width="0.1524" layer="91"/>
 <pinref part="GND10" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="LED1_GREEN" gate="G$1" pin="C"/>
+<wire x1="233.68" y1="60.96" x2="236.22" y2="60.96" width="0.1524" layer="91"/>
+<pinref part="LED2_BLUE" gate="G$1" pin="C"/>
+<wire x1="233.68" y1="68.58" x2="236.22" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="60.96" x2="236.22" y2="68.58" width="0.1524" layer="91"/>
+<pinref part="LED3_YELLOW" gate="G$1" pin="C"/>
+<wire x1="233.68" y1="76.2" x2="236.22" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="68.58" x2="236.22" y2="76.2" width="0.1524" layer="91"/>
+<junction x="236.22" y="68.58"/>
+<pinref part="LED4_RED" gate="G$1" pin="C"/>
+<wire x1="233.68" y1="83.82" x2="236.22" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="76.2" x2="236.22" y2="83.82" width="0.1524" layer="91"/>
+<junction x="236.22" y="76.2"/>
+<wire x1="236.22" y1="60.96" x2="241.3" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="241.3" y1="60.96" x2="241.3" y2="58.42" width="0.1524" layer="91"/>
+<junction x="236.22" y="60.96"/>
+<pinref part="GND11" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -8557,6 +8586,65 @@ Source: www.kingbright.com</description>
 <pinref part="P+6" gate="VCC" pin="VCC"/>
 <pinref part="DRAGON_ISP" gate="A" pin="5"/>
 <wire x1="115.57" y1="30.48" x2="93.98" y2="30.48" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="LED_RESISTOR_1" gate="G$1" pin="2"/>
+<pinref part="LED1_GREEN" gate="G$1" pin="A"/>
+<wire x1="198.12" y1="60.96" x2="226.06" y2="60.96" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="LED_RESISTOR_2" gate="G$1" pin="2"/>
+<pinref part="LED2_BLUE" gate="G$1" pin="A"/>
+<wire x1="198.12" y1="68.58" x2="226.06" y2="68.58" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="LED_RESISTOR_3" gate="G$1" pin="2"/>
+<pinref part="LED3_YELLOW" gate="G$1" pin="A"/>
+<wire x1="198.12" y1="76.2" x2="226.06" y2="76.2" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$5" class="0">
+<segment>
+<pinref part="LED_RESISTOR_4" gate="G$1" pin="2"/>
+<pinref part="LED4_RED" gate="G$1" pin="A"/>
+<wire x1="198.12" y1="83.82" x2="226.06" y2="83.82" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="LED_OUT_1" class="0">
+<segment>
+<pinref part="LED_RESISTOR_1" gate="G$1" pin="1"/>
+<pinref part="ATMEGA328" gate="G$1" pin="PD7(AIN1)"/>
+<wire x1="187.96" y1="60.96" x2="167.64" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="167.64" y1="76.2" x2="147.32" y2="76.2" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="LED_OUT_2" class="0">
+<segment>
+<pinref part="LED_RESISTOR_2" gate="G$1" pin="1"/>
+<pinref part="ATMEGA328" gate="G$1" pin="PD6(AIN0)"/>
+<wire x1="187.96" y1="68.58" x2="172.72" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="78.74" x2="147.32" y2="78.74" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="LED_OUT_3" class="0">
+<segment>
+<pinref part="LED_RESISTOR_3" gate="G$1" pin="1"/>
+<pinref part="ATMEGA328" gate="G$1" pin="PD5(T1)"/>
+<wire x1="187.96" y1="76.2" x2="177.8" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="81.28" x2="147.32" y2="81.28" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="LED_OUT_4" class="0">
+<segment>
+<pinref part="LED_RESISTOR_4" gate="G$1" pin="1"/>
+<pinref part="ATMEGA328" gate="G$1" pin="PD4(XCK/T0)"/>
+<wire x1="187.96" y1="83.82" x2="147.32" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

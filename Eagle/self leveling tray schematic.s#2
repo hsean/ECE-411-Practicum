@@ -8245,6 +8245,9 @@ Source: www.kingbright.com</description>
 <plain>
 <text x="16.51" y="156.21" size="1.778" layer="91">4x AA Batteries</text>
 <text x="251.46" y="-43.18" size="2.54" layer="91">1.2</text>
+<text x="241.3" y="73.66" size="1.778" layer="91">3.3V Max
+40 mA Max
+GPIO Out</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="-13.97" y="-50.8"/>
@@ -8695,4 +8698,10 @@ Source: www.kingbright.com</description>
 </errors>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
