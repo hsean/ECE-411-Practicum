@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project name="Self Leveling Table" company="Portland State University" webLink="http://" view-date="2015-09-27" view-index="1" gantt-divider-location="448" resource-divider-location="300" version="2.7.1" locale="en_US">
     <description><![CDATA[The is a project time line for Fall 2015 ECE 411 practicum project.  We are team number 4.]]></description>
-    <view zooming-state="default:6" id="gantt-chart">
+    <view zooming-state="default:0" id="gantt-chart">
         <field id="tpd3" name="Name" width="52" order="0"/>
         <field id="tpd4" name="Begin date" width="24" order="1"/>
         <field id="tpd5" name="End date" width="23" order="2"/>
@@ -39,10 +39,10 @@
         <task id="6" name="Project Design Specification" color="#8cb6ce" meeting="false" start="2015-10-05" duration="7" complete="0" expand="true"/>
     </tasks>
     <resources>
-        <resource id="0" name="Alhaddad, Waleed" function="Default:0" contacts="alhad@pdx.edu" phone="(503) 421-9414"/>
-        <resource id="1" name="Hendrickson, Sean" function="Default:0" contacts="hsean@pdx.edu" phone="(503) 927-6617"/>
-        <resource id="2" name="Steele, Adrian" function="Default:0" contacts="steelead@pdx.edu" phone="(503) 989-8640"/>
-        <resource id="3" name="Griffin, Taylor" function="Default:0" contacts="griffin.taylorb@gmail.com" phone="(503) 799-4920"/>
+        <resource id="0" name="Alhaddad, Waleed" function="1" contacts="alhad@pdx.edu" phone="(503) 421-9414"/>
+        <resource id="1" name="Hendrickson, Sean" function="1" contacts="hsean@pdx.edu" phone="(503) 927-6617"/>
+        <resource id="2" name="Steele, Adrian" function="1" contacts="steelead@pdx.edu" phone="(503) 989-8640"/>
+        <resource id="3" name="Griffin, Taylor" function="1" contacts="griffin.taylorb@gmail.com" phone="(503) 799-4920"/>
     </resources>
     <allocations/>
     <vacations/>
@@ -65,6 +65,6 @@
     <previous/>
     <roles roleset-name="Default"/>
     <roles>
-        <role id="1" name=""/>
+        <role id="1" name="Engineer"/>
     </roles>
 </project>
