@@ -8229,8 +8229,8 @@ Source: www.kingbright.com</description>
 <parts>
 <part name="FRAME1" library="frames" deviceset="FRAME_A_L" device=""/>
 <part name="ATMEGA328" library="atmel" deviceset="MEGA8-P" device=""/>
-<part name="PIN_ACCELEROMETER_MMA8452Q" library="pinhead" deviceset="PINHD-1X6" device="" value="1x6"/>
-<part name="PIN_SERV_CTRL_MICRO_MAESTRO" library="pinhead" deviceset="PINHD-1X5" device="" value="1x5"/>
+<part name="PIN_MMA8452Q" library="pinhead" deviceset="PINHD-1X6" device="" value="1x6"/>
+<part name="PIN_MICRO_MAESTRO" library="pinhead" deviceset="PINHD-1X5" device="" value="1x5"/>
 <part name="PIN_VCC_REGULATOR_D24V5F3" library="pinhead" deviceset="PINHD-1X4" device="" value="1x4"/>
 <part name="TERMINAL_BATT_IN" library="pinhead" deviceset="PINHD-1X2" device="" value="1x2"/>
 <part name="TERMINAL_BATT_OUT" library="pinhead" deviceset="PINHD-1X2" device="" value="1x2"/>
@@ -8273,7 +8273,7 @@ Source: www.kingbright.com</description>
 <sheet>
 <plain>
 <text x="6.35" y="154.94" size="1.778" layer="97">4x AA Batteries</text>
-<text x="251.46" y="-43.18" size="2.54" layer="97">1.2</text>
+<text x="251.46" y="-43.18" size="2.54" layer="97">1.3</text>
 <text x="241.3" y="73.66" size="1.778" layer="97">3.3V Max
 40 mA Max
 GPIO Output</text>
@@ -8282,13 +8282,13 @@ GPIO Output</text>
 <wire x1="256.54" y1="91.44" x2="256.54" y2="43.18" width="0.1524" layer="97"/>
 <wire x1="256.54" y1="43.18" x2="182.88" y2="43.18" width="0.1524" layer="97"/>
 <wire x1="182.88" y1="43.18" x2="182.88" y2="91.44" width="0.1524" layer="97"/>
-<wire x1="153.67" y1="154.94" x2="215.9" y2="154.94" width="0.1524" layer="97"/>
-<wire x1="215.9" y1="154.94" x2="215.9" y2="124.46" width="0.1524" layer="97"/>
-<wire x1="215.9" y1="124.46" x2="153.67" y2="124.46" width="0.1524" layer="97"/>
+<wire x1="153.67" y1="154.94" x2="195.58" y2="154.94" width="0.1524" layer="97"/>
+<wire x1="195.58" y1="154.94" x2="195.58" y2="124.46" width="0.1524" layer="97"/>
+<wire x1="195.58" y1="124.46" x2="153.67" y2="124.46" width="0.1524" layer="97"/>
 <wire x1="153.67" y1="124.46" x2="153.67" y2="154.94" width="0.1524" layer="97"/>
-<wire x1="193.04" y1="121.92" x2="251.46" y2="121.92" width="0.1524" layer="97"/>
-<wire x1="251.46" y1="121.92" x2="251.46" y2="93.98" width="0.1524" layer="97"/>
-<wire x1="251.46" y1="93.98" x2="193.04" y2="93.98" width="0.1524" layer="97"/>
+<wire x1="193.04" y1="121.92" x2="238.76" y2="121.92" width="0.1524" layer="97"/>
+<wire x1="238.76" y1="121.92" x2="238.76" y2="93.98" width="0.1524" layer="97"/>
+<wire x1="238.76" y1="93.98" x2="193.04" y2="93.98" width="0.1524" layer="97"/>
 <wire x1="193.04" y1="93.98" x2="193.04" y2="121.92" width="0.1524" layer="97"/>
 <wire x1="88.9" y1="45.72" x2="152.4" y2="45.72" width="0.1524" layer="97"/>
 <wire x1="152.4" y1="45.72" x2="152.4" y2="17.78" width="0.1524" layer="97"/>
@@ -8310,16 +8310,23 @@ GPIO Output</text>
 <wire x1="152.4" y1="130.81" x2="152.4" y2="52.07" width="0.1524" layer="97"/>
 <wire x1="152.4" y1="52.07" x2="77.47" y2="52.07" width="0.1524" layer="97"/>
 <wire x1="77.47" y1="52.07" x2="77.47" y2="130.81" width="0.1524" layer="97"/>
-<text x="6.35" y="152.4" size="1.778" layer="97">Terminal Power IN</text>
-<text x="44.45" y="152.4" size="1.778" layer="97">Terminal Power OUT</text>
-<text x="27.94" y="119.38" size="1.778" layer="97">Switching Voltage Regulator</text>
+<text x="6.35" y="157.48" size="1.778" layer="97">Terminal Power IN</text>
+<text x="44.45" y="154.94" size="1.778" layer="97">Terminal Power OUT</text>
+<text x="27.94" y="121.92" size="1.778" layer="97">Switching Voltage Regulator</text>
+<text x="162.56" y="-24.13" size="2.54" layer="94">Self Leveling Table
+Team 04</text>
+<text x="179.07" y="154.94" size="1.778" layer="97">Accelerometer</text>
+<text x="219.71" y="121.92" size="1.778" layer="97">Servo Controller</text>
+<text x="243.84" y="91.44" size="1.778" layer="97">LED Status</text>
+<text x="128.27" y="45.72" size="1.778" layer="97">Programmer Connect</text>
+<text x="134.62" y="130.81" size="1.778" layer="97">Microprocessor</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="-13.97" y="-50.8"/>
 <instance part="FRAME1" gate="G$2" x="158.75" y="-50.8"/>
 <instance part="ATMEGA328" gate="G$1" x="121.92" y="88.9"/>
-<instance part="PIN_ACCELEROMETER_MMA8452Q" gate="A" x="181.61" y="137.16"/>
-<instance part="PIN_SERV_CTRL_MICRO_MAESTRO" gate="A" x="222.25" y="106.68" smashed="yes">
+<instance part="PIN_MMA8452Q" gate="A" x="181.61" y="137.16"/>
+<instance part="PIN_MICRO_MAESTRO" gate="A" x="222.25" y="106.68" smashed="yes">
 <attribute name="NAME" x="210.82" y="114.935" size="1.778" layer="95"/>
 <attribute name="VALUE" x="215.9" y="96.52" size="1.778" layer="96"/>
 </instance>
@@ -8397,7 +8404,7 @@ GPIO Output</text>
 <wire x1="10.16" y1="137.16" x2="11.43" y2="135.89" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="PIN_ACCELEROMETER_MMA8452Q" gate="A" pin="6"/>
+<pinref part="PIN_MMA8452Q" gate="A" pin="6"/>
 <pinref part="GND3" gate="1" pin="GND"/>
 <wire x1="171.45" y1="130.81" x2="172.72" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="172.72" y1="132.08" x2="179.07" y2="132.08" width="0.1524" layer="91"/>
@@ -8454,14 +8461,14 @@ GPIO Output</text>
 <segment>
 <pinref part="GND4" gate="1" pin="GND"/>
 <wire x1="205.74" y1="115.57" x2="208.28" y2="115.57" width="0.1524" layer="91"/>
-<pinref part="PIN_SERV_CTRL_MICRO_MAESTRO" gate="A" pin="1"/>
+<pinref part="PIN_MICRO_MAESTRO" gate="A" pin="1"/>
 <wire x1="208.28" y1="115.57" x2="212.09" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="212.09" y1="111.76" x2="219.71" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SDA" class="0">
 <segment>
-<pinref part="PIN_ACCELEROMETER_MMA8452Q" gate="A" pin="2"/>
+<pinref part="PIN_MMA8452Q" gate="A" pin="2"/>
 <wire x1="179.07" y1="142.24" x2="160.02" y2="142.24" width="0.1524" layer="91"/>
 <label x="160.02" y="142.24" size="1.778" layer="95"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PC4(ADC4/SDA)"/>
@@ -8472,7 +8479,7 @@ GPIO Output</text>
 </net>
 <net name="SCL" class="0">
 <segment>
-<pinref part="PIN_ACCELEROMETER_MMA8452Q" gate="A" pin="3"/>
+<pinref part="PIN_MMA8452Q" gate="A" pin="3"/>
 <wire x1="179.07" y1="139.7" x2="162.56" y2="139.7" width="0.1524" layer="91"/>
 <label x="162.56" y="139.7" size="1.778" layer="95"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PC5(ADC5/SCL)"/>
@@ -8483,7 +8490,7 @@ GPIO Output</text>
 </net>
 <net name="INT0" class="0">
 <segment>
-<pinref part="PIN_ACCELEROMETER_MMA8452Q" gate="A" pin="4"/>
+<pinref part="PIN_MMA8452Q" gate="A" pin="4"/>
 <wire x1="179.07" y1="137.16" x2="165.1" y2="137.16" width="0.1524" layer="91"/>
 <label x="165.1" y="137.16" size="1.778" layer="95"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PD2(INT0)"/>
@@ -8496,7 +8503,7 @@ GPIO Output</text>
 <segment>
 <pinref part="ATMEGA328" gate="G$1" pin="PD3(INT1)"/>
 <wire x1="162.56" y1="86.36" x2="147.32" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="PIN_ACCELEROMETER_MMA8452Q" gate="A" pin="5"/>
+<pinref part="PIN_MMA8452Q" gate="A" pin="5"/>
 <wire x1="179.07" y1="134.62" x2="167.64" y2="134.62" width="0.1524" layer="91"/>
 <label x="167.64" y="134.62" size="1.778" layer="95"/>
 <wire x1="162.56" y1="86.36" x2="162.56" y2="129.54" width="0.1524" layer="91"/>
@@ -8552,7 +8559,7 @@ GPIO Output</text>
 <label x="111.76" y="43.18" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="VCC_3.3V" class="0">
+<net name="VCC" class="0">
 <segment>
 <pinref part="P+1" gate="VCC" pin="VCC"/>
 <pinref part="PIN_VCC_REGULATOR_D24V5F3" gate="A" pin="4"/>
@@ -8589,7 +8596,7 @@ GPIO Output</text>
 <pinref part="BYPASS_CAP_2" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<pinref part="PIN_ACCELEROMETER_MMA8452Q" gate="A" pin="1"/>
+<pinref part="PIN_MMA8452Q" gate="A" pin="1"/>
 <wire x1="172.72" y1="144.78" x2="179.07" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="P+5" gate="VCC" pin="VCC"/>
 <wire x1="171.45" y1="146.05" x2="171.45" y2="147.32" width="0.1524" layer="91"/>
@@ -8634,7 +8641,7 @@ GPIO Output</text>
 <segment>
 <pinref part="ATMEGA328" gate="G$1" pin="PD0(RXD)"/>
 <wire x1="147.32" y1="93.98" x2="175.26" y2="93.98" width="0.1524" layer="91"/>
-<pinref part="PIN_SERV_CTRL_MICRO_MAESTRO" gate="A" pin="3"/>
+<pinref part="PIN_MICRO_MAESTRO" gate="A" pin="3"/>
 <wire x1="187.96" y1="106.68" x2="219.71" y2="106.68" width="0.1524" layer="91"/>
 <label x="208.28" y="106.68" size="1.778" layer="95"/>
 <wire x1="175.26" y1="93.98" x2="187.96" y2="106.68" width="0.1524" layer="91"/>
@@ -8644,7 +8651,7 @@ GPIO Output</text>
 <segment>
 <pinref part="ATMEGA328" gate="G$1" pin="PD1(TXD)"/>
 <wire x1="147.32" y1="91.44" x2="177.8" y2="91.44" width="0.1524" layer="91"/>
-<pinref part="PIN_SERV_CTRL_MICRO_MAESTRO" gate="A" pin="4"/>
+<pinref part="PIN_MICRO_MAESTRO" gate="A" pin="4"/>
 <wire x1="190.5" y1="104.14" x2="219.71" y2="104.14" width="0.1524" layer="91"/>
 <label x="210.82" y="104.14" size="1.778" layer="95"/>
 <wire x1="177.8" y1="91.44" x2="190.5" y2="104.14" width="0.1524" layer="91"/>
@@ -8723,7 +8730,7 @@ GPIO Output</text>
 <pinref part="VCC_6V_3" gate="G$1" pin="VCC_6V"/>
 </segment>
 <segment>
-<pinref part="PIN_SERV_CTRL_MICRO_MAESTRO" gate="A" pin="2"/>
+<pinref part="PIN_MICRO_MAESTRO" gate="A" pin="2"/>
 <wire x1="219.71" y1="109.22" x2="200.66" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="200.66" y1="109.22" x2="199.39" y2="110.49" width="0.1524" layer="91"/>
 <wire x1="199.39" y1="110.49" x2="199.39" y2="114.3" width="0.1524" layer="91"/>
@@ -8734,6 +8741,7 @@ GPIO Output</text>
 </sheet>
 </sheets>
 <errors>
+<approved hash="104,1,99.06,106.68,ATMEGA328,AVCC,VCC,,,"/>
 <approved hash="113,1,125.626,57.046,FRAME1,,,,,"/>
 </errors>
 </schematic>
