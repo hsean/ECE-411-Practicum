@@ -1,19 +1,64 @@
 
 *************************************************
+* Week of 8 November 2015
+*************************************************
+
+Last Week
+---------------
+
+Next Week
+----------------
+
+Issues
+----------
+
+
+*************************************************
+* Week of 1 November 2015
+*************************************************
+
+Last Week
+---------------
+  Made holes in 3D model for mounting
+  Purchased LEDs
+  Purchased hardware for device assembly
+
+Next Week
+----------------
+  Write code to get data from accelerometer
+  Make rendering for 3D model
+  Test components
+
+Issues
+----------
+  Need I2C code for ATMEGA328 to Accelerometer communication
+  
+
+*************************************************
 * Week of 25 October 2015
 *************************************************
 
 Last Week
 ---------------
-  
+  Purchased all components except acrylic and screws
+  Base to tray arm design decided
+  3D model continued
+  Tested accelerometer with arduino 
+  Figured out how to program ATMEGA with Dragon AVR
+  Ran blinking light test program on ATMEGA
 
 Next Week
 ----------------
-  
+  Write code for microcontroller to accelerometer communication
+  Add holes to 3D model for component mounting
+  Decide what LEDs to use for light feature
+  Soldering components for breadboard testing
+  Work on schematic
+  Project Schedule
 
 Issues
 ----------
-  
+  Need to get screws since brackets did not come with any
 
 
 *************************************************
