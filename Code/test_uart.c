@@ -1,4 +1,4 @@
-#define F_CPU 20000000    // AVR clock frequency in Hz, used by util/delay.h
+#define F_CPU 8000000    // AVR clock frequency in Hz, used by util/delay.h
 #include <avr/io.h>
 #include <util/delay.h>
 
@@ -35,28 +35,28 @@ int main() {
 //initialize USART
 void USARTinit()
 {
-	unsigned int fosc = 8000000;     //8MHz clock system oscillator clock frequency ? correct or (20 MHz)? frequency should be multiples of 1.8432 MHz
-	unsigned int baud = 9600;       //Target baud rate 9600 bps
-	unsigned int myubrr = (fosc / (16 * baud)) - 1;     //value to enter into baud rate registers
-	
+	//unsigned int fosc = 8000000;     //8MHz clock system oscillator clock frequency ? correct or (20 MHz)? frequency should be multiples of 1.8432 MHz
+	//unsigned int baud = 9600;       //Target baud rate 9600 bps
+	//unsigned int myubrr = (fosc / (16 * baud)) - 1;     //value to enter into baud rate registers
+	unsigned int myubrr = 51;
 	//set baud rate
 	UBRR0H = (unsigned char) (myubrr>>8);     //get most significant byte
 	UBRR0L = (unsigned char) myubrr;          //get least significant byte
 	
 	//USART control and status register: enable transmitter, disable receiver, write character size bit 2 to 0 (for 8 bit character size)
 	UCSR0B = (1 << TXEN0) |      //write 1 to tx enable bit (enable it)
-                 (0 << RXEN0) |      //0 to rx enable bit (disable it)
-                 (0 << UCSZ02);      //character size bit 2 = 0;
+             (0 << RXEN0) |      //0 to rx enable bit (disable it)
+             (0 << UCSZ02);      //character size bit 2 = 0;
 	
 	//set frame format: 8 data, 1 stop bit, parity mode disabled, asynchronous usart
 	UCSR0C = (0 << USBS0) |       //write 0 int stop bit select bit (1 stop bit)
-                 (1 << UCSZ00) |      //0x03 into character size bits (8-bit data size) bit 0 = 1
-                 (1 << UCSZ01) |      //                                             bit 1 = 1
-                 (0 << UPM00) |       //parity mode disabled: bit 0 = 0
-                 (0 << UPM01) |       //parity mode disabled: bit 1 = 0
+             (1 << UCSZ00) |      //0x03 into character size bits (8-bit data size) bit 0 = 1
+             (1 << UCSZ01) |      //                                             bit 1 = 1
+             (0 << UPM00) |       //parity mode disabled: bit 0 = 0
+             (0 << UPM01) |       //parity mode disabled: bit 1 = 0
 	         (0 << UMSEL01) |     //asynchronous USART mode of operation for USART bit 1 = 0
-                 (0 << UMSEL00) |     //                                               bit 0 = 0
-                 (0 << UCPOL0);       //write 0 to clock parity bit (0 when asynchronous mode is used)
+             (0 << UMSEL00) |     //                                               bit 0 = 0
+             (0 << UCPOL0);       //write 0 to clock parity bit (0 when asynchronous mode is used)
 
 	return;
 }
@@ -83,7 +83,7 @@ void USARTservoPos(unsigned short position, unsigned char channelNum)
 {
 	USARTtransmit(0xAA);     //send the baud rate indication byte to servo controller
 	USARTtransmit(0x0C);
-	USARTtransmit(0x84 & 0x7F);     //set target command byte
+	USARTtransmit(0x04);     //set target command byte
 	USARTtransmit(channelNum);     //channel number of servo to control
 	
 	position *= 4;     //wants position in quarter micro seconds
