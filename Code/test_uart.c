@@ -16,10 +16,10 @@ int main() {
 	while (1) {
 		//PORTD |= (1<<PORTD1);   // drive PD1 high
 		USARTservoPos(1250,0x05);
-		_delay_ms(500);         // delay 10 ms
+		_delay_ms(500);         // delay 500 ms
 		//PORTD &= ~(1<<PORTD1);  // drive PD1 low
 		USARTservoPos(1750,0x05);
-		_delay_ms(500);         // delay 10 ms
+		_delay_ms(500);         // delay 500 ms
 	}
 }
 
@@ -43,12 +43,21 @@ void USARTinit()
 	UBRR0H = (unsigned char) (myubrr>>8);     //get most significant byte
 	UBRR0L = (unsigned char) myubrr;          //get least significant byte
 	
-	//enable transmitter
-	UCSR0B = (1 << TXEN0) | (0 << RXEN0);     //write 1 to tx enable bit, 0 to rx enable bit, in usart control and status register b
+	//USART control and status register: enable transmitter, disable receiver, write character size bit 2 to 0 (for 8 bit character size)
+	UCSR0B = (1 << TXEN0) |      //write 1 to tx enable bit (enable it)
+                 (0 << RXEN0) |      //0 to rx enable bit (disable it)
+                 (0 << UCSZ02);      //character size bit 2 = 0;
 	
-	//set frame format: 8 data, 1 stop bit
-	UCSR0C = (0 << USBS0) | (3 << UCSZ00) | (0 << UPM00) | (0 << UPM01);     //write 0 into stop bit select bit (1 stop bit), 3 into character size bits (8-bit data size)
-	
+	//set frame format: 8 data, 1 stop bit, parity mode disabled, asynchronous usart
+	UCSR0C = (0 << USBS0) |       //write 0 int stop bit select bit (1 stop bit)
+                 (1 << UCSZ00) |      //0x03 into character size bits (8-bit data size) bit 0 = 1
+                 (1 << UCSZ01) |      //                                             bit 1 = 1
+                 (0 << UPM00) |       //parity mode disabled: bit 0 = 0
+                 (0 << UPM01) |       //parity mode disabled: bit 1 = 0
+	         (0 << UMSEL01) |     //asynchronous USART mode of operation for USART bit 1 = 0
+                 (0 << UMSEL00) |     //                                               bit 0 = 0
+                 (0 << UCPOL0);       //write 0 to clock parity bit (0 when asynchronous mode is used)
+
 	return;
 }
 
