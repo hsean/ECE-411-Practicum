@@ -142,7 +142,7 @@ Taylor</text>
 <hole x="38.354" y="2.286" drill="3.6"/>
 <dimension x1="40.64" y1="63.5" x2="0" y2="63.5" x3="20.32" y3="66.04" textsize="0.635" textratio="20" layer="20" unit="inch" visible="yes"/>
 <dimension x1="40.64" y1="0" x2="40.64" y2="63.5" x3="45.72" y3="31.75" textsize="0.635" textratio="20" layer="20" unit="inch" visible="yes"/>
-<text x="9.906" y="60.706" size="0.635" layer="20" ratio="20">Expand to fit space: 1.6'' x 2.5''
+<text x="9.906" y="60.706" size="0.635" layer="51" ratio="20">Expand to fit space: 1.6'' x 2.5''
 Make it easier to solder</text>
 </plain>
 <libraries>
@@ -1980,13 +1980,13 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="LM2940_5V_REGULATOR" pad="2"/>
 <contactref element="C5" pad="2"/>
 <contactref element="C6" pad="2"/>
-<polygon width="0.3048" layer="1">
+<polygon width="0.3048" layer="1" isolate="0.254">
 <vertex x="0" y="63.5"/>
 <vertex x="40.64" y="63.5"/>
 <vertex x="40.64" y="0"/>
 <vertex x="0" y="0"/>
 </polygon>
-<polygon width="0.3048" layer="16">
+<polygon width="0.3048" layer="16" isolate="0.254">
 <vertex x="0" y="63.5"/>
 <vertex x="40.64" y="63.5"/>
 <vertex x="40.64" y="0"/>
