@@ -9,22 +9,36 @@ void USARTservoPos(unsigned short position, unsigned char channelNum);
 void USARTservoSpeed(unsigned short speed);
 void USARTacceleration(unsigned short acceleration);
 void USARTsetMultiple(unsigned short position);
+void TWIInit(void);
+void TWIStart(void);
+void TWIStop(void);
+void TWIWrite(uint8_t u8data);
+uint8_t TWIReadACK(void);
+uint8_t TWIReadNACK(void);
+uint8_t TWIGetStatus(void);
+
 
 int main() {
-	//DDRD |= (1<<DDD1);          // set LED pin PD1 to output
-	USARTinit();
-	USARTacceleration(0x00);
-	USARTservoSpeed(0x00);
-	/*while (1) {
-		//PORTD |= (1<<PORTD1);   // drive PD1 high
-		USARTservoPos(400,0x05);
+	
+	
+	/* Test LED
+	DDRD |= (1<<DDD1);          // set LED pin PD1 to output
+	
+	while (1) {
+		PORTD |= (1<<PORTD1);   // drive PD1 high
 		_delay_ms(100);         // delay 500 ms
-		//PORTD &= ~(1<<PORTD1);  // drive PD1 low
-		USARTservoPos(2800,0x05);
+		PORTD &= ~(1<<PORTD1);  // drive PD1 low
 		_delay_ms(100);         // delay 500 ms
 	}
 	*/
+	
+	/* Test UART
 	int i = 800;
+	
+	USARTinit();
+	USARTacceleration(0x00);
+	/USARTservoSpeed(0x00);
+	
 	while(1)
 	{
 		for(i; i < 2400; i+=100)
@@ -38,8 +52,43 @@ int main() {
 			_delay_ms(50);
 		}
 	}
+	*/
 	
 	
+	int x, y, z;
+	
+	DDRD |= (1<<DDD1);          // set LED pin PD1 to output
+	TWIInit();               //initialize ATmega328 twi
+	
+	//change to fast read mode and slow data rate
+	TWIStart();         //start condition
+	TWIWrite(0x38);     //slave address  with R/W bit set to 0 (write)
+	TWIWrite(0x2A);     //register to read: CTRL_REG1 (system control 1 register)
+	TWIWrite(0x22);     //(bit 5 = 1, bit 4 = 0, bit 3 = 0) - data rate to 50 Hz
+	                    //(bit 1 = 1) - F_READ to fast read mode (ignore lsb registers)
+	TWIStop();
+	
+	while(1)
+	{
+		//Get xyz data
+		TWIStart();              //start condition
+		TWIWrite(0x38);          //slave address with R/W bit set to 0 (write)
+		TWIWrite(0x01);          //register to read (OUT_X_MSB)
+		TWIStart();              //repeated start condition
+		TWIWrite(0x39);          //slave address with R/W bit set to 1 (read)
+		x = TWIReadACK() * 90;    //read x y z data, change from G's to angle
+		y = TWIReadACK() * 90;
+		z = TWIReadACK() * 90;
+		TWIStop();               //send stop condition
+
+		if(abs(x) >= 45 || abs(y) >= 45)
+			PORTD |= (1<<PORTD1);   // drive PD1 high
+		else
+			PORTD &= ~(1<<PORTD1);  // drive PD1 low
+	}
+	
+
+	return 0;
 }
 
 
@@ -131,7 +180,7 @@ void USARTsetMultiple(unsigned short position)
         //position of second servo
 	USARTtransmit(position & 0x7F);     //send least significant byte of servo position
 	USARTtransmit((position >> 7) & 0x7F);     //send most significant byte of servo position
-        position of third servo
+        //position of third servo
 	USARTtransmit(position & 0x7F);     //send least significant byte of servo position
 	USARTtransmit((position >> 7) & 0x7F);     //send most significant byte of servo position
 	return;
