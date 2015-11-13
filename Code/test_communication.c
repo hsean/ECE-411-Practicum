@@ -1,6 +1,7 @@
 #define F_CPU 8000000    // AVR clock frequency in Hz, used by util/delay.h
 #include <avr/io.h>
 #include <util/delay.h>
+#include <math.h>
 
 //prototypes
 void USARTinit();
@@ -15,19 +16,21 @@ void TWIStop(void);
 void TWIWrite(uint8_t u8data);
 uint8_t TWIReadACK(void);
 uint8_t TWIReadNACK(void);
-uint8_t TWIGetStatus(void);
+void TWIGetStatus(void);
+int ConvertData(uint8_t data,uint8_t data2);
+void GetData(uint8_t data);
 
 
 int main() {
 	
-	
-	/* Test LED
-	DDRD |= (1<<DDD1);          // set LED pin PD1 to output
+	/*
+	// Test LED
+	DDRD |= (1<<DDD5);          // set LED pin PD1 to output
 	
 	while (1) {
-		PORTD |= (1<<PORTD1);   // drive PD1 high
+		PORTD |= (1<<PORTD5);   // drive PD1 high
 		_delay_ms(100);         // delay 500 ms
-		PORTD &= ~(1<<PORTD1);  // drive PD1 low
+		PORTD &= ~(1<<PORTD5);  // drive PD1 low
 		_delay_ms(100);         // delay 500 ms
 	}
 	*/
@@ -55,42 +58,202 @@ int main() {
 	*/
 	
 	
-	int x, y, z;
+	uint8_t x, x2, y, y2, z, z2;
 	
-	DDRD |= (1<<DDD1);          // set LED pin PD1 to output
+	DDRD |= (1<<DDD5)|(1<<DDD6);          // set LED pin PD1 to output
 	TWIInit();               //initialize ATmega328 twi
+	
+	PORTD |= (1<<PORTD5);   // drive PD5 high
+	PORTD |= (1<<PORTD6);   // drive PD6 high
+	
+	_delay_ms(500);
+		
+	PORTD &= ~(1<<PORTD5);  // drive PD5 low
+	PORTD &= ~(1<<PORTD6);  // drive PD6 low	
+	_delay_ms(500);
+	
 	
 	//change to fast read mode and slow data rate
 	TWIStart();         //start condition
-	TWIWrite(0x38);     //slave address  with R/W bit set to 0 (write)
+	TWIWrite(0x3A);     //slave address  with R/W bit set to 0 (write)
 	TWIWrite(0x2A);     //register to read: CTRL_REG1 (system control 1 register)
-	TWIWrite(0x22);     //(bit 5 = 1, bit 4 = 0, bit 3 = 0) - data rate to 50 Hz
+	TWIWrite(0x01);     //(bit 5 = 1, bit 4 = 0, bit 3 = 0) - data rate to 50 Hz
 	                    //(bit 1 = 1) - F_READ to fast read mode (ignore lsb registers)
 	TWIStop();
+	
+	
 	
 	while(1)
 	{
 		//Get xyz data
 		TWIStart();              //start condition
-		TWIWrite(0x38);          //slave address with R/W bit set to 0 (write)
+		TWIWrite(0x3A);          //slave address with R/W bit set to 0 (write)
 		TWIWrite(0x01);          //register to read (OUT_X_MSB)
 		TWIStart();              //repeated start condition
-		TWIWrite(0x39);          //slave address with R/W bit set to 1 (read)
-		x = TWIReadACK() * 90;    //read x y z data, change from G's to angle
-		y = TWIReadACK() * 90;
-		z = TWIReadACK() * 90;
+		TWIWrite(0x3B);          //slave address with R/W bit set to 1 (read)
+		
+		x = TWIReadACK();    //read x y z data, change from G's to angle
+		x2 = TWIReadACK();
+		y = TWIReadACK();
+		y2 = TWIReadACK();
+		z = TWIReadACK();
+		z2 = TWIReadNACK();
+		
 		TWIStop();               //send stop condition
 
-		if(abs(x) >= 45 || abs(y) >= 45)
-			PORTD |= (1<<PORTD1);   // drive PD1 high
+		int xExt, yExt, zExt;
+		xExt = ConvertData(x,x2);
+		yExt = ConvertData(y,y2);
+		zExt = ConvertData(z,z2);
+		
+		//GetData(x);
+		//GetData(x2);
+		
+		if(fabs(xExt) >= 45 || fabs(yExt) >= 45)
+			PORTD |= (1<<PORTD5);   // drive PD1 high
 		else
-			PORTD &= ~(1<<PORTD1);  // drive PD1 low
+			PORTD &= ~(1<<PORTD5);  // drive PD1 low
+			
+		if((fabs(xExt) >= 0 && fabs(xExt) < 45) || (fabs(yExt) >= 0 && fabs(yExt) < 45))
+			PORTD |= (1<<PORTD6);   // drive PD1 high
+		else
+			PORTD &= ~(1<<PORTD6);  // drive PD1 low
+
 	}
 	
 
 	return 0;
 }
 
+
+//initialize TWI (I2C)
+void TWIInit(void)
+{
+	//set SCL to 400kHz
+	TWSR = 0x00;
+	TWBR = 0x18;
+	//enable TWI
+	TWCR = (1<<TWEN);
+}
+//TWIStart AND TWIStop functions to generate start and stop signals
+void TWIStart(void)
+{
+	uint8_t status;
+
+	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
+	while ((TWCR & (1<<TWINT)) == 0);
+}
+//send stop signal
+void TWIStop(void)
+{
+	TWCR = (1<<TWINT)|(1<<TWSTO)|(1<<TWEN);
+}
+
+void TWIWrite(uint8_t u8data)
+{
+	TWDR = u8data;
+	TWCR = (1<<TWINT)|(1<<TWEN);
+	while ((TWCR & (1<<TWINT)) == 0);
+	//TWIGetStatus();
+	
+}
+
+uint8_t TWIReadACK(void)
+{
+	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWEA);
+	while ((TWCR & (1<<TWINT)) == 0);
+	//TWIGetStatus();
+	return TWDR;
+}
+//read byte with NACK
+uint8_t TWIReadNACK(void)
+{
+	TWCR = (1<<TWINT)|(1<<TWEN);
+	while ((TWCR & (1<<TWINT)) == 0);
+	//TWIGetStatus();
+	return TWDR;
+}
+
+void TWIGetStatus(void)
+{
+	uint8_t status;
+	//mask status
+	status = TWSR & 0xF8;
+
+	_delay_ms(500);
+
+	int i = 7;
+	int j = 128;
+	for(i; i >= 0; --i)
+	{
+		if (status & j)
+		{
+			PORTD |= (1<<PORTD6);   // drive PD1 high
+			_delay_ms(150);
+			PORTD &= ~(1<<PORTD6);  // drive PD1 low
+			_delay_ms(150);
+		}
+		else
+		{
+			PORTD |= (1<<PORTD5);   // drive PD1 high
+			_delay_ms(150);
+			PORTD &= ~(1<<PORTD5);  // drive PD1 low
+			_delay_ms(150);
+		}
+		j /= 2;
+	}
+	
+	
+	return;
+}
+
+void GetData(uint8_t data)
+{
+	_delay_ms(500);
+
+	int i = 7;
+	int j = 128;
+	for(i; i >= 0; --i)
+	{
+		if (data & j)
+		{
+			PORTD |= (1<<PORTD6);   // drive PD1 high
+			_delay_ms(150);
+			PORTD &= ~(1<<PORTD6);  // drive PD1 low
+			_delay_ms(150);
+		}
+		else
+		{
+			PORTD |= (1<<PORTD5);   // drive PD1 high
+			_delay_ms(150);
+			PORTD &= ~(1<<PORTD5);  // drive PD1 low
+			_delay_ms(150);
+		}
+		j /= 2;
+	}
+	
+	
+	return;
+}
+
+
+int ConvertData(uint8_t data,uint8_t data2)
+{
+	    int dataExt;
+		float superAngle;
+
+	    dataExt = (data << 8) | data2;
+		dataExt = dataExt >> 4;
+
+	    /*if(data > 0x7F)
+			dataExt = ~(dataExt | 0xFFFF0000)+1;
+			dataExt *= -1;
+		*/
+		superAngle = (float) dataExt / (float)(1 << 11) * (float)2;
+		int angle = (int) (superAngle * 90);
+		
+		return angle;
+}
 
 /*
  * USART Interface
@@ -128,6 +291,8 @@ void USARTinit()
 
 	return;
 }
+
+
 
 
 //transmit a byte through USART
@@ -221,58 +386,3 @@ void USARTacceleration(unsigned short acceleration)
 }
 
 
-//initialize TWI (I2C)
-void TWIInit(void)
-{
-	//set SCL to 400kHz
-	TWSR = 0x00;
-	TWBR = 0x0C;
-	//enable TWI
-	TWCR = (1<<TWEN);
-}
-//TWIStart AND TWIStop functions to generate start and stop signals
-void TWIStart(void)
-{
-	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
-	while ((TWCR & (1<<TWINT)) == 0);
-}
-//send stop signal
-void TWIStop(void)
-{
-	TWCR = (1<<TWINT)|(1<<TWSTO)|(1<<TWEN);
-}
-
-void TWIWrite(uint8_t u8data)
-{
-	TWDR = u8data;
-	TWCR = (1<<TWINT)|(1<<TWEN);
-	while ((TWCR & (1<<TWINT)) == 0);
-}
-
-uint8_t TWIReadACK(void)
-{
-	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWEA);
-	while ((TWCR & (1<<TWINT)) == 0);
-	return TWDR;
-}
-//read byte with NACK
-uint8_t TWIReadNACK(void)
-{
-	TWCR = (1<<TWINT)|(1<<TWEN);
-	while ((TWCR & (1<<TWINT)) == 0);
-	return TWDR;
-}
-
-uint8_t TWIGetStatus(void)
-{
-	uint8_t status;
-	//mask status
-	status = TWSR & 0xF8;
-	return status;
-}
-/*
-{	else
-	return FALSE;	//Error
-	
-}
-*/
