@@ -8,20 +8,20 @@
 </settings>
 <grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="2" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="no"/>
-<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="no" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -30,8 +30,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -39,17 +39,17 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="yes" active="no"/>
-<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="yes" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
-<layer number="57" name="tCAD" color="7" fill="1" visible="yes" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
@@ -9253,10 +9253,10 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="LED2" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
 <part name="LED3" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
 <part name="LED4" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
-<part name="LED_RESISTOR_1" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="LED_RESISTOR_2" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="LED_RESISTOR_3" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="LED_RESISTOR_4" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="LED_R1" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="LED_R2" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="LED_R3" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="LED_R4" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="VCC_6V_1" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
 <part name="VCC_6V_2" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
@@ -9264,21 +9264,20 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="VCC_6V_4" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
 <part name="VCC_6V_5" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
-<part name="LED_RESISTOR_5" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="LED_R5" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
 <part name="LED5_BLUE" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
-<part name="Y1" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US" value="16 MHz"/>
+<part name="OSC1" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US" value="16 MHz"/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C1206" value="22pF"/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C1206" value="22pF"/>
 <part name="GND13" library="supply1" deviceset="GND" device=""/>
-<part name="LED_DOTSTAR_STRIP" library="pinhead" deviceset="PINHD-1X3" device="" value="1x3"/>
 <part name="P+6" library="supply1" deviceset="VCC" device="" value="3.3V"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
-<part name="BUFFER" library="74xx-eu" deviceset="74*125" device="N" technology="ACT"/>
+<part name="74ACT125" library="74xx-eu" deviceset="74*125" device="N" technology="ACT"/>
 <part name="GND14" library="supply1" deviceset="GND" device=""/>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 <part name="GND16" library="supply1" deviceset="GND" device=""/>
-<part name="LM2940_5V_REGULATOR" library="pinhead" deviceset="PINHD-1X3" device=""/>
+<part name="LM2940" library="pinhead" deviceset="PINHD-1X3" device="" value="1x3"/>
 <part name="VCC_6V_6" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="5V_VCC_1" library="Taylor_LIB" deviceset="5V_VCC" device=""/>
@@ -9286,6 +9285,8 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="C6" library="rcl" deviceset="C-EU" device="C1206" value="22uF"/>
 <part name="5V_VCC_2" library="Taylor_LIB" deviceset="5V_VCC" device=""/>
 <part name="GND19" library="supply1" deviceset="GND" device=""/>
+<part name="DOTSTAR_LED" library="pinhead" deviceset="PINHD-1X4" device="" value="1x4"/>
+<part name="5V_VCC_3" library="Taylor_LIB" deviceset="5V_VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9353,10 +9354,11 @@ Team 04</text>
 <wire x1="228.6" y1="40.64" x2="228.6" y2="-13.97" width="0.1524" layer="97"/>
 <wire x1="228.6" y1="-13.97" x2="177.8" y2="-13.97" width="0.1524" layer="97"/>
 <text x="199.39" y="38.1" size="1.778" layer="97">3.3V to 5V Buffer</text>
-<wire x1="99.06" y1="-19.05" x2="99.06" y2="12.7" width="0.1524" layer="97"/>
-<wire x1="99.06" y1="12.7" x2="144.78" y2="12.7" width="0.1524" layer="97"/>
-<wire x1="144.78" y1="12.7" x2="144.78" y2="-19.05" width="0.1524" layer="97"/>
-<wire x1="144.78" y1="-19.05" x2="99.06" y2="-19.05" width="0.1524" layer="97"/>
+<wire x1="27.94" y1="-16.51" x2="27.94" y2="15.24" width="0.1524" layer="97"/>
+<wire x1="27.94" y1="15.24" x2="73.66" y2="15.24" width="0.1524" layer="97"/>
+<wire x1="73.66" y1="15.24" x2="73.66" y2="-16.51" width="0.1524" layer="97"/>
+<wire x1="73.66" y1="-16.51" x2="27.94" y2="-16.51" width="0.1524" layer="97"/>
+<text x="54.61" y="12.7" size="1.778" layer="97">5V 1A Regulator</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="-13.97" y="-50.8"/>
@@ -9405,10 +9407,10 @@ Team 04</text>
 <instance part="LED2" gate="G$1" x="228.6" y="63.5" rot="R90"/>
 <instance part="LED3" gate="G$1" x="228.6" y="73.66" rot="R90"/>
 <instance part="LED4" gate="G$1" x="228.6" y="83.82" rot="R90"/>
-<instance part="LED_RESISTOR_1" gate="G$1" x="193.04" y="53.34"/>
-<instance part="LED_RESISTOR_2" gate="G$1" x="193.04" y="63.5"/>
-<instance part="LED_RESISTOR_3" gate="G$1" x="193.04" y="73.66"/>
-<instance part="LED_RESISTOR_4" gate="G$1" x="193.04" y="83.82"/>
+<instance part="LED_R1" gate="G$1" x="193.04" y="53.34"/>
+<instance part="LED_R2" gate="G$1" x="193.04" y="63.5"/>
+<instance part="LED_R3" gate="G$1" x="193.04" y="73.66"/>
+<instance part="LED_R4" gate="G$1" x="193.04" y="83.82"/>
 <instance part="GND11" gate="1" x="241.3" y="48.26"/>
 <instance part="VCC_6V_1" gate="G$1" x="25.4" y="143.51"/>
 <instance part="VCC_6V_2" gate="G$1" x="39.37" y="147.32"/>
@@ -9416,47 +9418,47 @@ Team 04</text>
 <instance part="VCC_6V_4" gate="G$1" x="199.39" y="114.3"/>
 <instance part="VCC_6V_5" gate="G$1" x="93.98" y="149.86"/>
 <instance part="GND12" gate="1" x="137.16" y="142.24"/>
-<instance part="LED_RESISTOR_5" gate="G$1" x="101.6" y="147.32" smashed="yes">
+<instance part="LED_R5" gate="G$1" x="101.6" y="147.32" smashed="yes">
 <attribute name="NAME" x="96.52" y="148.8186" size="1.778" layer="95"/>
 <attribute name="VALUE" x="96.52" y="144.018" size="1.778" layer="96"/>
 </instance>
 <instance part="LED5_BLUE" gate="G$1" x="129.54" y="147.32" rot="R90"/>
-<instance part="Y1" gate="G$1" x="48.26" y="55.88" smashed="yes">
+<instance part="OSC1" gate="G$1" x="48.26" y="55.88" smashed="yes">
 <attribute name="NAME" x="50.8" y="56.896" size="1.778" layer="95"/>
 <attribute name="VALUE" x="44.45" y="52.07" size="1.778" layer="96"/>
 </instance>
 <instance part="C1" gate="G$1" x="43.18" y="48.26"/>
 <instance part="C2" gate="G$1" x="53.34" y="48.26"/>
 <instance part="GND13" gate="1" x="48.26" y="35.56"/>
-<instance part="LED_DOTSTAR_STRIP" gate="A" x="245.11" y="15.24" smashed="yes">
-<attribute name="NAME" x="233.68" y="20.955" size="1.778" layer="95"/>
-<attribute name="VALUE" x="238.76" y="7.62" size="1.778" layer="96"/>
-</instance>
 <instance part="P+6" gate="VCC" x="134.62" y="39.37"/>
 <instance part="GND9" gate="1" x="132.08" y="25.4"/>
-<instance part="BUFFER" gate="A" x="190.5" y="27.94"/>
-<instance part="BUFFER" gate="B" x="190.5" y="10.16"/>
+<instance part="74ACT125" gate="A" x="190.5" y="27.94"/>
+<instance part="74ACT125" gate="B" x="190.5" y="10.16"/>
 <instance part="GND14" gate="1" x="198.12" y="35.56"/>
 <instance part="GND15" gate="1" x="198.12" y="17.78"/>
-<instance part="BUFFER" gate="C" x="190.5" y="-7.62"/>
+<instance part="74ACT125" gate="C" x="190.5" y="-7.62"/>
 <instance part="GND17" gate="1" x="199.39" y="0"/>
 <instance part="GND16" gate="1" x="233.68" y="7.62"/>
-<instance part="LM2940_5V_REGULATOR" gate="A" x="119.38" y="6.35" smashed="yes" rot="R90">
-<attribute name="NAME" x="110.49" y="9.525" size="1.778" layer="95"/>
-<attribute name="VALUE" x="127" y="0" size="1.778" layer="96" rot="R90"/>
+<instance part="LM2940" gate="A" x="48.26" y="8.89" smashed="yes" rot="R90">
+<attribute name="NAME" x="43.18" y="10.795" size="1.778" layer="95"/>
+<attribute name="VALUE" x="55.88" y="2.54" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="VCC_6V_6" gate="G$1" x="106.68" y="5.08"/>
-<instance part="GND18" gate="1" x="119.38" y="-15.24"/>
-<instance part="5V_VCC_1" gate="G$1" x="132.08" y="5.08" smashed="yes">
-<attribute name="VALUE" x="134.62" y="5.08" size="1.778" layer="96"/>
+<instance part="VCC_6V_6" gate="G$1" x="35.56" y="7.62"/>
+<instance part="GND18" gate="1" x="48.26" y="-12.7"/>
+<instance part="5V_VCC_1" gate="G$1" x="60.96" y="7.62" smashed="yes">
+<attribute name="VALUE" x="63.5" y="7.62" size="1.778" layer="96"/>
 </instance>
-<instance part="C5" gate="G$1" x="106.68" y="-5.08"/>
-<instance part="C6" gate="G$1" x="132.08" y="-5.08"/>
-<instance part="BUFFER" gate="P" x="215.9" y="29.21" smashed="yes"/>
+<instance part="C5" gate="G$1" x="35.56" y="-2.54"/>
+<instance part="C6" gate="G$1" x="60.96" y="-2.54"/>
+<instance part="74ACT125" gate="P" x="215.9" y="29.21" smashed="yes"/>
 <instance part="5V_VCC_2" gate="G$1" x="223.52" y="33.02" smashed="yes">
 <attribute name="VALUE" x="219.71" y="36.83" size="1.778" layer="96"/>
 </instance>
 <instance part="GND19" gate="1" x="223.52" y="22.86"/>
+<instance part="DOTSTAR_LED" gate="A" x="246.38" y="15.24"/>
+<instance part="5V_VCC_3" gate="G$1" x="233.68" y="22.86" smashed="yes">
+<attribute name="VALUE" x="229.87" y="26.67" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -9560,42 +9562,42 @@ Team 04</text>
 <pinref part="GND9" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="BUFFER" gate="B" pin="OE"/>
+<pinref part="74ACT125" gate="B" pin="OE"/>
 <wire x1="190.5" y1="17.78" x2="190.5" y2="20.32" width="0.1524" layer="91"/>
 <pinref part="GND15" gate="1" pin="GND"/>
 <wire x1="190.5" y1="20.32" x2="198.12" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="BUFFER" gate="A" pin="OE"/>
+<pinref part="74ACT125" gate="A" pin="OE"/>
 <wire x1="190.5" y1="35.56" x2="190.5" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="GND14" gate="1" pin="GND"/>
 <wire x1="190.5" y1="38.1" x2="198.12" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="BUFFER" gate="C" pin="OE"/>
+<pinref part="74ACT125" gate="C" pin="OE"/>
 <wire x1="190.5" y1="0" x2="190.5" y2="2.54" width="0.1524" layer="91"/>
 <wire x1="190.5" y1="2.54" x2="199.39" y2="2.54" width="0.1524" layer="91"/>
 <pinref part="GND17" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="LED_DOTSTAR_STRIP" gate="A" pin="3"/>
-<wire x1="242.57" y1="12.7" x2="233.68" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="12.7" x2="233.68" y2="12.7" width="0.1524" layer="91"/>
 <wire x1="233.68" y1="12.7" x2="233.68" y2="10.16" width="0.1524" layer="91"/>
 <pinref part="GND16" gate="1" pin="GND"/>
+<pinref part="DOTSTAR_LED" gate="A" pin="4"/>
 </segment>
 <segment>
-<pinref part="LM2940_5V_REGULATOR" gate="A" pin="2"/>
+<pinref part="LM2940" gate="A" pin="2"/>
 <pinref part="GND18" gate="1" pin="GND"/>
-<wire x1="119.38" y1="3.81" x2="119.38" y2="-10.16" width="0.1524" layer="91"/>
+<wire x1="48.26" y1="6.35" x2="48.26" y2="-7.62" width="0.1524" layer="91"/>
 <pinref part="C5" gate="G$1" pin="2"/>
-<wire x1="119.38" y1="-10.16" x2="119.38" y2="-12.7" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="-10.16" x2="119.38" y2="-10.16" width="0.1524" layer="91"/>
-<junction x="119.38" y="-10.16"/>
+<wire x1="48.26" y1="-7.62" x2="48.26" y2="-10.16" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="-7.62" x2="48.26" y2="-7.62" width="0.1524" layer="91"/>
+<junction x="48.26" y="-7.62"/>
 <pinref part="C6" gate="G$1" pin="2"/>
-<wire x1="132.08" y1="-10.16" x2="119.38" y2="-10.16" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="-7.62" x2="48.26" y2="-7.62" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="BUFFER" gate="P" pin="GND"/>
+<pinref part="74ACT125" gate="P" pin="GND"/>
 <pinref part="GND19" gate="1" pin="GND"/>
 <wire x1="215.9" y1="21.59" x2="223.52" y2="25.4" width="0.1524" layer="91"/>
 </segment>
@@ -9746,28 +9748,28 @@ Team 04</text>
 </net>
 <net name="N$2" class="0">
 <segment>
-<pinref part="LED_RESISTOR_1" gate="G$1" pin="2"/>
+<pinref part="LED_R1" gate="G$1" pin="2"/>
 <pinref part="LED1" gate="G$1" pin="A"/>
 <wire x1="198.12" y1="53.34" x2="226.06" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
 <segment>
-<pinref part="LED_RESISTOR_2" gate="G$1" pin="2"/>
+<pinref part="LED_R2" gate="G$1" pin="2"/>
 <pinref part="LED2" gate="G$1" pin="A"/>
 <wire x1="198.12" y1="63.5" x2="226.06" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
 <segment>
-<pinref part="LED_RESISTOR_3" gate="G$1" pin="2"/>
+<pinref part="LED_R3" gate="G$1" pin="2"/>
 <pinref part="LED3" gate="G$1" pin="A"/>
 <wire x1="198.12" y1="73.66" x2="226.06" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">
 <segment>
-<pinref part="LED_RESISTOR_4" gate="G$1" pin="2"/>
+<pinref part="LED_R4" gate="G$1" pin="2"/>
 <pinref part="LED4" gate="G$1" pin="A"/>
 <wire x1="198.12" y1="83.82" x2="226.06" y2="83.82" width="0.1524" layer="91"/>
 </segment>
@@ -9777,7 +9779,7 @@ Team 04</text>
 <pinref part="PIN_MICRO_MAESTRO" gate="A" pin="3"/>
 <wire x1="187.96" y1="106.68" x2="219.71" y2="106.68" width="0.1524" layer="91"/>
 <label x="208.28" y="106.68" size="1.778" layer="95"/>
-<pinref part="BUFFER" gate="C" pin="O"/>
+<pinref part="74ACT125" gate="C" pin="O"/>
 <wire x1="200.66" y1="-7.62" x2="259.08" y2="-7.62" width="0.1524" layer="91"/>
 <wire x1="259.08" y1="-7.62" x2="259.08" y2="127" width="0.1524" layer="91"/>
 <wire x1="259.08" y1="127" x2="203.2" y2="127" width="0.1524" layer="91"/>
@@ -9799,7 +9801,7 @@ Team 04</text>
 </net>
 <net name="N$9" class="0">
 <segment>
-<pinref part="LED_RESISTOR_3" gate="G$1" pin="1"/>
+<pinref part="LED_R3" gate="G$1" pin="1"/>
 <wire x1="187.96" y1="73.66" x2="172.72" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PD5(T1)"/>
 <wire x1="147.32" y1="81.28" x2="165.1" y2="81.28" width="0.1524" layer="91"/>
@@ -9808,7 +9810,7 @@ Team 04</text>
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="LED_RESISTOR_2" gate="G$1" pin="1"/>
+<pinref part="LED_R2" gate="G$1" pin="1"/>
 <wire x1="187.96" y1="63.5" x2="177.8" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PD6(AIN0)"/>
 <wire x1="147.32" y1="78.74" x2="162.56" y2="78.74" width="0.1524" layer="91"/>
@@ -9817,7 +9819,7 @@ Team 04</text>
 </net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="LED_RESISTOR_4" gate="G$1" pin="1"/>
+<pinref part="LED_R4" gate="G$1" pin="1"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PD4(XCK/T0)"/>
 <wire x1="147.32" y1="83.82" x2="187.96" y2="83.82" width="0.1524" layer="91"/>
 </segment>
@@ -9827,7 +9829,7 @@ Team 04</text>
 <pinref part="ATMEGA328" gate="G$1" pin="PD7(AIN1)"/>
 <wire x1="147.32" y1="76.2" x2="160.02" y2="76.2" width="0.1524" layer="91"/>
 <wire x1="160.02" y1="76.2" x2="182.88" y2="53.34" width="0.1524" layer="91"/>
-<pinref part="LED_RESISTOR_1" gate="G$1" pin="1"/>
+<pinref part="LED_R1" gate="G$1" pin="1"/>
 <wire x1="182.88" y1="53.34" x2="187.96" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -9879,22 +9881,22 @@ Team 04</text>
 <segment>
 <pinref part="VCC_6V_5" gate="G$1" pin="VCC_6V"/>
 <wire x1="93.98" y1="149.86" x2="93.98" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="LED_RESISTOR_5" gate="G$1" pin="1"/>
+<pinref part="LED_R5" gate="G$1" pin="1"/>
 <wire x1="93.98" y1="147.32" x2="96.52" y2="147.32" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="LM2940_5V_REGULATOR" gate="A" pin="1"/>
-<wire x1="116.84" y1="3.81" x2="116.84" y2="-2.54" width="0.1524" layer="91"/>
+<pinref part="LM2940" gate="A" pin="1"/>
+<wire x1="45.72" y1="6.35" x2="45.72" y2="0" width="0.1524" layer="91"/>
 <pinref part="C5" gate="G$1" pin="1"/>
-<wire x1="116.84" y1="-2.54" x2="106.68" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="-2.54" x2="106.68" y2="5.08" width="0.1524" layer="91"/>
-<junction x="106.68" y="-2.54"/>
+<wire x1="45.72" y1="0" x2="35.56" y2="0" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="0" x2="35.56" y2="7.62" width="0.1524" layer="91"/>
+<junction x="35.56" y="0"/>
 <pinref part="VCC_6V_6" gate="G$1" pin="VCC_6V"/>
 </segment>
 </net>
 <net name="N$1" class="0">
 <segment>
-<pinref part="LED_RESISTOR_5" gate="G$1" pin="2"/>
+<pinref part="LED_R5" gate="G$1" pin="2"/>
 <pinref part="LED5_BLUE" gate="G$1" pin="A"/>
 <wire x1="106.68" y1="147.32" x2="127" y2="147.32" width="0.1524" layer="91"/>
 </segment>
@@ -9906,7 +9908,7 @@ Team 04</text>
 <wire x1="97.79" y1="99.06" x2="69.85" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="69.85" y1="71.12" x2="43.18" y2="71.12" width="0.1524" layer="91"/>
 <pinref part="C1" gate="G$1" pin="1"/>
-<pinref part="Y1" gate="G$1" pin="1"/>
+<pinref part="OSC1" gate="G$1" pin="1"/>
 <wire x1="43.18" y1="50.8" x2="43.18" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="55.88" x2="45.72" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="71.12" x2="43.18" y2="55.88" width="0.1524" layer="91"/>
@@ -9919,7 +9921,7 @@ Team 04</text>
 <pinref part="ATMEGA328" gate="G$1" pin="PB7(XTAL2/TOSC2)"/>
 <wire x1="99.06" y1="93.98" x2="95.25" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="95.25" y1="93.98" x2="69.85" y2="68.58" width="0.1524" layer="91"/>
-<pinref part="Y1" gate="G$1" pin="2"/>
+<pinref part="OSC1" gate="G$1" pin="2"/>
 <pinref part="C2" gate="G$1" pin="1"/>
 <wire x1="50.8" y1="55.88" x2="53.34" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="53.34" y1="55.88" x2="53.34" y2="50.8" width="0.1524" layer="91"/>
@@ -9933,7 +9935,7 @@ Team 04</text>
 <segment>
 <pinref part="ATMEGA328" gate="G$1" pin="PB0(ICP)"/>
 <wire x1="147.32" y1="71.12" x2="162.56" y2="71.12" width="0.1524" layer="91"/>
-<pinref part="BUFFER" gate="A" pin="I"/>
+<pinref part="74ACT125" gate="A" pin="I"/>
 <wire x1="162.56" y1="71.12" x2="162.56" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="27.94" x2="180.34" y2="27.94" width="0.1524" layer="91"/>
 <label x="161.29" y="25.4" size="1.778" layer="95"/>
@@ -9943,7 +9945,7 @@ Team 04</text>
 <segment>
 <pinref part="ATMEGA328" gate="G$1" pin="PB1(OC1A)"/>
 <wire x1="147.32" y1="68.58" x2="160.02" y2="68.58" width="0.1524" layer="91"/>
-<pinref part="BUFFER" gate="B" pin="I"/>
+<pinref part="74ACT125" gate="B" pin="I"/>
 <wire x1="160.02" y1="68.58" x2="160.02" y2="10.16" width="0.1524" layer="91"/>
 <wire x1="160.02" y1="10.16" x2="180.34" y2="10.16" width="0.1524" layer="91"/>
 <label x="161.29" y="11.43" size="1.778" layer="95"/>
@@ -9951,20 +9953,20 @@ Team 04</text>
 </net>
 <net name="N$8" class="0">
 <segment>
-<pinref part="BUFFER" gate="A" pin="O"/>
+<pinref part="74ACT125" gate="A" pin="O"/>
 <wire x1="200.66" y1="27.94" x2="208.28" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="LED_DOTSTAR_STRIP" gate="A" pin="1"/>
 <wire x1="208.28" y1="27.94" x2="208.28" y2="17.78" width="0.1524" layer="91"/>
-<wire x1="208.28" y1="17.78" x2="242.57" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="17.78" x2="243.84" y2="17.78" width="0.1524" layer="91"/>
+<pinref part="DOTSTAR_LED" gate="A" pin="2"/>
 </segment>
 </net>
 <net name="N$13" class="0">
 <segment>
-<pinref part="BUFFER" gate="B" pin="O"/>
+<pinref part="74ACT125" gate="B" pin="O"/>
 <wire x1="200.66" y1="10.16" x2="208.28" y2="10.16" width="0.1524" layer="91"/>
-<pinref part="LED_DOTSTAR_STRIP" gate="A" pin="2"/>
 <wire x1="208.28" y1="10.16" x2="208.28" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="208.28" y1="15.24" x2="242.57" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="15.24" x2="243.84" y2="15.24" width="0.1524" layer="91"/>
+<pinref part="DOTSTAR_LED" gate="A" pin="3"/>
 </segment>
 </net>
 <net name="UP_TXD" class="0">
@@ -9972,25 +9974,31 @@ Team 04</text>
 <pinref part="ATMEGA328" gate="G$1" pin="PD1(TXD)"/>
 <wire x1="147.32" y1="91.44" x2="170.18" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="170.18" y1="91.44" x2="170.18" y2="-7.62" width="0.1524" layer="91"/>
-<pinref part="BUFFER" gate="C" pin="I"/>
+<pinref part="74ACT125" gate="C" pin="I"/>
 <wire x1="170.18" y1="-7.62" x2="180.34" y2="-7.62" width="0.1524" layer="91"/>
-<label x="167.64" y="-10.16" size="1.778" layer="95"/>
+<label x="160.02" y="-7.62" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="5V_VCC" class="0">
 <segment>
-<pinref part="LM2940_5V_REGULATOR" gate="A" pin="3"/>
-<wire x1="121.92" y1="3.81" x2="121.92" y2="-2.54" width="0.1524" layer="91"/>
+<pinref part="LM2940" gate="A" pin="3"/>
+<wire x1="50.8" y1="6.35" x2="50.8" y2="0" width="0.1524" layer="91"/>
 <pinref part="C6" gate="G$1" pin="1"/>
-<wire x1="121.92" y1="-2.54" x2="132.08" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="0" x2="60.96" y2="0" width="0.1524" layer="91"/>
 <pinref part="5V_VCC_1" gate="G$1" pin="5V_VCC"/>
-<wire x1="132.08" y1="-2.54" x2="132.08" y2="5.08" width="0.1524" layer="91"/>
-<junction x="132.08" y="-2.54"/>
+<wire x1="60.96" y1="0" x2="60.96" y2="7.62" width="0.1524" layer="91"/>
+<junction x="60.96" y="0"/>
 </segment>
 <segment>
-<pinref part="BUFFER" gate="P" pin="VCC"/>
+<pinref part="74ACT125" gate="P" pin="VCC"/>
 <pinref part="5V_VCC_2" gate="G$1" pin="5V_VCC"/>
 <wire x1="215.9" y1="36.83" x2="223.52" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="DOTSTAR_LED" gate="A" pin="1"/>
+<wire x1="243.84" y1="20.32" x2="233.68" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="20.32" x2="233.68" y2="22.86" width="0.1524" layer="91"/>
+<pinref part="5V_VCC_3" gate="G$1" pin="5V_VCC"/>
 </segment>
 </net>
 </nets>
@@ -10000,6 +10008,7 @@ Team 04</text>
 <approved hash="104,1,99.06,106.68,ATMEGA328,AVCC,VCC,,,"/>
 <approved hash="114,1,191.424,31.0727,BUFFER,D,OE,,,"/>
 <approved hash="114,1,191.424,31.0727,BUFFER,D,I,,,"/>
+<approved hash="104,1,215.9,36.83,BUFFERP,VCC,5V_VCC,,,"/>
 <approved hash="113,1,125.626,57.046,FRAME1,,,,,"/>
 </errors>
 </schematic>
