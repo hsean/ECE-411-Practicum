@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="2" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
@@ -9227,7 +9227,7 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="ATMEGA328" library="atmel" deviceset="MEGA8-P" device=""/>
 <part name="PIN_MMA8452Q" library="pinhead" deviceset="PINHD-1X6" device="" value="1x6"/>
 <part name="PIN_MICRO_MAESTRO" library="pinhead" deviceset="PINHD-1X5" device="" value="1x5"/>
-<part name="PIN_VCC_REGULATOR_D24V5F3" library="pinhead" deviceset="PINHD-1X4" device="" value="1x4"/>
+<part name="D24V5F3" library="pinhead" deviceset="PINHD-1X4" device="" value="1x4"/>
 <part name="TERMINAL_BATT_IN" library="pinhead" deviceset="PINHD-1X2" device="" value="1x2"/>
 <part name="TERMINAL_BATT_OUT" library="pinhead" deviceset="PINHD-1X2" device="" value="1x2"/>
 <part name="PULL_UP_1" library="rcl" deviceset="R-US_" device="M1206" value="10K"/>
@@ -9331,7 +9331,8 @@ GPIO Output</text>
 <wire x1="77.47" y1="52.07" x2="77.47" y2="130.81" width="0.1524" layer="97"/>
 <text x="6.35" y="152.4" size="1.778" layer="97">Terminal Power IN</text>
 <text x="44.45" y="154.94" size="1.778" layer="97">Terminal Power OUT</text>
-<text x="27.94" y="121.92" size="1.778" layer="97">Switching Voltage Regulator</text>
+<text x="27.94" y="116.84" size="1.778" layer="97">Switching Voltage Regulator
+Output: 3.3V</text>
 <text x="162.56" y="-24.13" size="2.54" layer="94">Self Leveling Table
 Team 04</text>
 <text x="179.07" y="154.94" size="1.778" layer="97">Accelerometer</text>
@@ -9369,8 +9370,8 @@ Team 04</text>
 <attribute name="NAME" x="210.82" y="114.935" size="1.778" layer="95"/>
 <attribute name="VALUE" x="215.9" y="96.52" size="1.778" layer="96"/>
 </instance>
-<instance part="PIN_VCC_REGULATOR_D24V5F3" gate="A" x="39.37" y="88.9" smashed="yes">
-<attribute name="NAME" x="22.86" y="97.155" size="1.778" layer="95"/>
+<instance part="D24V5F3" gate="A" x="39.37" y="88.9" smashed="yes">
+<attribute name="NAME" x="30.48" y="97.155" size="1.778" layer="95"/>
 <attribute name="VALUE" x="33.02" y="81.28" size="1.778" layer="96"/>
 </instance>
 <instance part="TERMINAL_BATT_IN" gate="G$1" x="1.27" y="139.7" smashed="yes" rot="R180">
@@ -9519,7 +9520,7 @@ Team 04</text>
 <pinref part="GND11" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="PIN_VCC_REGULATOR_D24V5F3" gate="A" pin="3"/>
+<pinref part="D24V5F3" gate="A" pin="3"/>
 <pinref part="GND5" gate="1" pin="GND"/>
 <wire x1="36.83" y1="88.9" x2="26.67" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="26.67" y1="88.9" x2="24.13" y2="86.36" width="0.1524" layer="91"/>
@@ -9698,7 +9699,7 @@ Team 04</text>
 <net name="VCC" class="0">
 <segment>
 <pinref part="P+1" gate="VCC" pin="VCC"/>
-<pinref part="PIN_VCC_REGULATOR_D24V5F3" gate="A" pin="4"/>
+<pinref part="D24V5F3" gate="A" pin="4"/>
 <wire x1="46.99" y1="77.47" x2="46.99" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="36.83" y1="86.36" x2="30.48" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="86.36" x2="29.21" y2="85.09" width="0.1524" layer="91"/>
@@ -9835,7 +9836,7 @@ Team 04</text>
 </net>
 <net name="V_REG_RESET" class="0">
 <segment>
-<pinref part="PIN_VCC_REGULATOR_D24V5F3" gate="A" pin="1"/>
+<pinref part="D24V5F3" gate="A" pin="1"/>
 <pinref part="PULL_UP_1" gate="G$1" pin="1"/>
 <wire x1="36.83" y1="93.98" x2="20.32" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="20.32" y1="93.98" x2="17.78" y2="96.52" width="0.1524" layer="91"/>
@@ -9857,7 +9858,7 @@ Team 04</text>
 <pinref part="VCC_6V_2" gate="G$1" pin="VCC_6V"/>
 </segment>
 <segment>
-<pinref part="PIN_VCC_REGULATOR_D24V5F3" gate="A" pin="2"/>
+<pinref part="D24V5F3" gate="A" pin="2"/>
 <wire x1="36.83" y1="91.44" x2="17.78" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="17.78" y1="91.44" x2="12.7" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="12.7" y1="96.52" x2="12.7" y2="110.49" width="0.1524" layer="91"/>
