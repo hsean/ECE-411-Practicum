@@ -9228,15 +9228,15 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="MMA8452Q" library="pinhead" deviceset="PINHD-1X6" device="" value="1x6"/>
 <part name="MICRO_MAESTRO" library="pinhead" deviceset="PINHD-1X5" device="" value="1x5"/>
 <part name="D24V5F3" library="pinhead" deviceset="PINHD-1X4" device="" value="1x4"/>
-<part name="TERMINAL_BATT_IN" library="pinhead" deviceset="PINHD-1X2" device="" value="1x2"/>
-<part name="TERMINAL_BATT_OUT" library="pinhead" deviceset="PINHD-1X2" device="" value="1x2"/>
-<part name="PULL_UP_1" library="rcl" deviceset="R-US_" device="M1206" value="10K"/>
+<part name="BATTERY_IN" library="pinhead" deviceset="PINHD-1X2" device="" value="1x2"/>
+<part name="BATTERY_OUT" library="pinhead" deviceset="PINHD-1X2" device="" value="1x2"/>
+<part name="R2" library="rcl" deviceset="R-US_" device="M1206" value="10K"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
-<part name="PULL_UP_2" library="rcl" deviceset="R-US_" device="M1206" value="10K"/>
+<part name="R1" library="rcl" deviceset="R-US_" device="M1206" value="10K"/>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
 <part name="DRAGON_ISP" library="pinhead" deviceset="PINHD-2X3" device="" value="2x3"/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
@@ -9253,10 +9253,10 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="LED2" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
 <part name="LED3" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
 <part name="LED4" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
-<part name="LED_R1" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="LED_R2" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="LED_R3" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="LED_R4" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="R3" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="R4" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="R5" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="R6" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="VCC_6V_1" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
 <part name="VCC_6V_2" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
@@ -9264,8 +9264,8 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="VCC_6V_4" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
 <part name="VCC_6V_5" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
-<part name="LED_R5" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="LED5_BLUE" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
+<part name="R7" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="LED5" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
 <part name="OSC1" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US" value="16 MHz"/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C1206" value="22pF"/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C1206" value="22pF"/>
@@ -9287,6 +9287,10 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="GND19" library="supply1" deviceset="GND" device=""/>
 <part name="DOTSTAR_LED" library="pinhead" deviceset="PINHD-1X4" device="" value="1x4"/>
 <part name="5V_VCC_3" library="Taylor_LIB" deviceset="5V_VCC" device=""/>
+<part name="5V_VCC_4" library="Taylor_LIB" deviceset="5V_VCC" device=""/>
+<part name="GND20" library="supply1" deviceset="GND" device=""/>
+<part name="GND21" library="supply1" deviceset="GND" device=""/>
+<part name="C7" library="rcl" deviceset="C-EU" device="C1206" value="100 nF"/>
 </parts>
 <sheets>
 <sheet>
@@ -9351,15 +9355,20 @@ Team 04</text>
 <wire x1="35.56" y1="30.48" x2="35.56" y2="60.96" width="0.1524" layer="97"/>
 <text x="54.61" y="60.96" size="1.778" layer="97">External Clock</text>
 <wire x1="177.8" y1="-13.97" x2="177.8" y2="40.64" width="0.1524" layer="97"/>
-<wire x1="177.8" y1="40.64" x2="228.6" y2="40.64" width="0.1524" layer="97"/>
-<wire x1="228.6" y1="40.64" x2="228.6" y2="-13.97" width="0.1524" layer="97"/>
-<wire x1="228.6" y1="-13.97" x2="177.8" y2="-13.97" width="0.1524" layer="97"/>
+<wire x1="177.8" y1="40.64" x2="238.76" y2="40.64" width="0.1524" layer="97"/>
+<wire x1="238.76" y1="40.64" x2="238.76" y2="-13.97" width="0.1524" layer="97"/>
+<wire x1="238.76" y1="-13.97" x2="177.8" y2="-13.97" width="0.1524" layer="97"/>
 <text x="199.39" y="38.1" size="1.778" layer="97">3.3V to 5V Buffer</text>
 <wire x1="27.94" y1="-16.51" x2="27.94" y2="15.24" width="0.1524" layer="97"/>
 <wire x1="27.94" y1="15.24" x2="73.66" y2="15.24" width="0.1524" layer="97"/>
 <wire x1="73.66" y1="15.24" x2="73.66" y2="-16.51" width="0.1524" layer="97"/>
 <wire x1="73.66" y1="-16.51" x2="27.94" y2="-16.51" width="0.1524" layer="97"/>
 <text x="54.61" y="12.7" size="1.778" layer="97">5V 1A Regulator</text>
+<wire x1="109.22" y1="-20.32" x2="149.86" y2="-20.32" width="0.1524" layer="97"/>
+<wire x1="149.86" y1="-20.32" x2="149.86" y2="12.7" width="0.1524" layer="97"/>
+<wire x1="149.86" y1="12.7" x2="109.22" y2="12.7" width="0.1524" layer="97"/>
+<wire x1="109.22" y1="12.7" x2="109.22" y2="-20.32" width="0.1524" layer="97"/>
+<text x="128.27" y="10.16" size="1.778" layer="97">Unused Buffer Port</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="-13.97" y="-50.8"/>
@@ -9374,12 +9383,12 @@ Team 04</text>
 <attribute name="NAME" x="30.48" y="97.155" size="1.778" layer="95"/>
 <attribute name="VALUE" x="33.02" y="81.28" size="1.778" layer="96"/>
 </instance>
-<instance part="TERMINAL_BATT_IN" gate="G$1" x="1.27" y="139.7" smashed="yes" rot="R180">
+<instance part="BATTERY_IN" gate="G$1" x="1.27" y="139.7" smashed="yes" rot="R180">
 <attribute name="NAME" x="-3.81" y="142.875" size="1.778" layer="95"/>
 <attribute name="VALUE" x="3.81" y="133.35" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="TERMINAL_BATT_OUT" gate="G$1" x="49.53" y="142.24"/>
-<instance part="PULL_UP_1" gate="G$1" x="17.78" y="101.6" rot="R90"/>
+<instance part="BATTERY_OUT" gate="G$1" x="49.53" y="142.24"/>
+<instance part="R2" gate="G$1" x="17.78" y="101.6" rot="R90"/>
 <instance part="GND1" gate="1" x="95.25" y="86.36"/>
 <instance part="GND2" gate="1" x="95.25" y="111.76"/>
 <instance part="GND3" gate="1" x="171.45" y="128.27"/>
@@ -9387,7 +9396,7 @@ Team 04</text>
 <instance part="GND6" gate="1" x="11.43" y="132.08" smashed="yes">
 <attribute name="VALUE" x="8.89" y="129.54" size="1.778" layer="96"/>
 </instance>
-<instance part="PULL_UP_2" gate="G$1" x="91.44" y="121.92" rot="R180"/>
+<instance part="R1" gate="G$1" x="91.44" y="121.92" rot="R180"/>
 <instance part="GND4" gate="1" x="205.74" y="113.03"/>
 <instance part="DRAGON_ISP" gate="A" x="118.11" y="33.02"/>
 <instance part="GND7" gate="1" x="39.37" y="137.16"/>
@@ -9408,10 +9417,10 @@ Team 04</text>
 <instance part="LED2" gate="G$1" x="228.6" y="63.5" rot="R90"/>
 <instance part="LED3" gate="G$1" x="228.6" y="73.66" rot="R90"/>
 <instance part="LED4" gate="G$1" x="228.6" y="83.82" rot="R90"/>
-<instance part="LED_R1" gate="G$1" x="193.04" y="53.34"/>
-<instance part="LED_R2" gate="G$1" x="193.04" y="63.5"/>
-<instance part="LED_R3" gate="G$1" x="193.04" y="73.66"/>
-<instance part="LED_R4" gate="G$1" x="193.04" y="83.82"/>
+<instance part="R3" gate="G$1" x="193.04" y="53.34"/>
+<instance part="R4" gate="G$1" x="193.04" y="63.5"/>
+<instance part="R5" gate="G$1" x="193.04" y="73.66"/>
+<instance part="R6" gate="G$1" x="193.04" y="83.82"/>
 <instance part="GND11" gate="1" x="241.3" y="48.26"/>
 <instance part="VCC_6V_1" gate="G$1" x="25.4" y="143.51"/>
 <instance part="VCC_6V_2" gate="G$1" x="39.37" y="147.32"/>
@@ -9419,11 +9428,11 @@ Team 04</text>
 <instance part="VCC_6V_4" gate="G$1" x="199.39" y="114.3"/>
 <instance part="VCC_6V_5" gate="G$1" x="93.98" y="149.86"/>
 <instance part="GND12" gate="1" x="137.16" y="142.24"/>
-<instance part="LED_R5" gate="G$1" x="101.6" y="147.32" smashed="yes">
+<instance part="R7" gate="G$1" x="101.6" y="147.32" smashed="yes">
 <attribute name="NAME" x="96.52" y="148.8186" size="1.778" layer="95"/>
 <attribute name="VALUE" x="96.52" y="144.018" size="1.778" layer="96"/>
 </instance>
-<instance part="LED5_BLUE" gate="G$1" x="129.54" y="147.32" rot="R90"/>
+<instance part="LED5" gate="G$1" x="129.54" y="147.32" rot="R90"/>
 <instance part="OSC1" gate="G$1" x="48.26" y="55.88" smashed="yes">
 <attribute name="NAME" x="50.8" y="56.896" size="1.778" layer="95"/>
 <attribute name="VALUE" x="44.45" y="52.07" size="1.778" layer="96"/>
@@ -9439,7 +9448,7 @@ Team 04</text>
 <instance part="GND15" gate="1" x="198.12" y="17.78"/>
 <instance part="74ACT125" gate="C" x="190.5" y="-7.62"/>
 <instance part="GND17" gate="1" x="199.39" y="0"/>
-<instance part="GND16" gate="1" x="233.68" y="7.62"/>
+<instance part="GND16" gate="1" x="243.84" y="7.62"/>
 <instance part="LM2940" gate="A" x="48.26" y="8.89" smashed="yes" rot="R90">
 <attribute name="NAME" x="43.18" y="10.795" size="1.778" layer="95"/>
 <attribute name="VALUE" x="55.88" y="2.54" size="1.778" layer="96" rot="R90"/>
@@ -9452,14 +9461,21 @@ Team 04</text>
 <instance part="C5" gate="G$1" x="35.56" y="-2.54"/>
 <instance part="C6" gate="G$1" x="60.96" y="-2.54"/>
 <instance part="74ACT125" gate="P" x="215.9" y="29.21" smashed="yes"/>
-<instance part="5V_VCC_2" gate="G$1" x="223.52" y="33.02" smashed="yes">
-<attribute name="VALUE" x="219.71" y="36.83" size="1.778" layer="96"/>
+<instance part="5V_VCC_2" gate="G$1" x="223.52" y="34.29" smashed="yes">
+<attribute name="VALUE" x="219.71" y="38.1" size="1.778" layer="96"/>
 </instance>
-<instance part="GND19" gate="1" x="223.52" y="22.86"/>
-<instance part="DOTSTAR_LED" gate="A" x="246.38" y="15.24"/>
-<instance part="5V_VCC_3" gate="G$1" x="233.68" y="22.86" smashed="yes">
-<attribute name="VALUE" x="229.87" y="26.67" size="1.778" layer="96"/>
+<instance part="GND19" gate="1" x="223.52" y="21.59"/>
+<instance part="DOTSTAR_LED" gate="A" x="254" y="15.24"/>
+<instance part="5V_VCC_3" gate="G$1" x="243.84" y="22.86" smashed="yes">
+<attribute name="VALUE" x="240.03" y="26.67" size="1.778" layer="96"/>
 </instance>
+<instance part="74ACT125" gate="D" x="124.46" y="-7.62"/>
+<instance part="5V_VCC_4" gate="G$1" x="124.46" y="5.08" smashed="yes">
+<attribute name="VALUE" x="114.3" y="5.08" size="1.778" layer="96"/>
+</instance>
+<instance part="GND20" gate="1" x="144.78" y="-15.24"/>
+<instance part="GND21" gate="1" x="111.76" y="-15.24"/>
+<instance part="C7" gate="G$1" x="228.6" y="30.48"/>
 </instances>
 <busses>
 </busses>
@@ -9478,7 +9494,7 @@ Team 04</text>
 <wire x1="99.06" y1="88.9" x2="95.25" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="TERMINAL_BATT_IN" gate="G$1" pin="1"/>
+<pinref part="BATTERY_IN" gate="G$1" pin="1"/>
 <wire x1="3.81" y1="137.16" x2="10.16" y2="137.16" width="0.1524" layer="91"/>
 <pinref part="GND6" gate="1" pin="GND"/>
 <wire x1="11.43" y1="135.89" x2="11.43" y2="134.62" width="0.1524" layer="91"/>
@@ -9526,7 +9542,7 @@ Team 04</text>
 <wire x1="26.67" y1="88.9" x2="24.13" y2="86.36" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="TERMINAL_BATT_OUT" gate="G$1" pin="2"/>
+<pinref part="BATTERY_OUT" gate="G$1" pin="2"/>
 <wire x1="46.99" y1="142.24" x2="40.64" y2="142.24" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="142.24" x2="39.37" y2="140.97" width="0.1524" layer="91"/>
 <pinref part="GND7" gate="1" pin="GND"/>
@@ -9543,7 +9559,7 @@ Team 04</text>
 <pinref part="GND12" gate="1" pin="GND"/>
 <wire x1="137.16" y1="144.78" x2="137.16" y2="147.32" width="0.1524" layer="91"/>
 <wire x1="137.16" y1="147.32" x2="134.62" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="LED5_BLUE" gate="G$1" pin="C"/>
+<pinref part="LED5" gate="G$1" pin="C"/>
 </segment>
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
@@ -9581,8 +9597,8 @@ Team 04</text>
 <pinref part="GND17" gate="1" pin="GND"/>
 </segment>
 <segment>
-<wire x1="243.84" y1="12.7" x2="233.68" y2="12.7" width="0.1524" layer="91"/>
-<wire x1="233.68" y1="12.7" x2="233.68" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="251.46" y1="12.7" x2="243.84" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="12.7" x2="243.84" y2="10.16" width="0.1524" layer="91"/>
 <pinref part="GND16" gate="1" pin="GND"/>
 <pinref part="DOTSTAR_LED" gate="A" pin="4"/>
 </segment>
@@ -9600,7 +9616,23 @@ Team 04</text>
 <segment>
 <pinref part="74ACT125" gate="P" pin="GND"/>
 <pinref part="GND19" gate="1" pin="GND"/>
-<wire x1="215.9" y1="21.59" x2="223.52" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="215.9" y1="21.59" x2="223.52" y2="24.13" width="0.1524" layer="91"/>
+<pinref part="C7" gate="G$1" pin="2"/>
+<wire x1="223.52" y1="24.13" x2="228.6" y2="24.13" width="0.1524" layer="91"/>
+<wire x1="228.6" y1="24.13" x2="228.6" y2="25.4" width="0.1524" layer="91"/>
+<junction x="223.52" y="24.13"/>
+</segment>
+<segment>
+<pinref part="74ACT125" gate="D" pin="O"/>
+<wire x1="134.62" y1="-7.62" x2="144.78" y2="-7.62" width="0.1524" layer="91"/>
+<wire x1="144.78" y1="-7.62" x2="144.78" y2="-12.7" width="0.1524" layer="91"/>
+<pinref part="GND20" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="74ACT125" gate="D" pin="I"/>
+<wire x1="114.3" y1="-7.62" x2="111.76" y2="-7.62" width="0.1524" layer="91"/>
+<wire x1="111.76" y1="-7.62" x2="111.76" y2="-12.7" width="0.1524" layer="91"/>
+<pinref part="GND21" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -9683,7 +9715,7 @@ Team 04</text>
 </net>
 <net name="RESET" class="0">
 <segment>
-<pinref part="PULL_UP_2" gate="G$1" pin="1"/>
+<pinref part="R1" gate="G$1" pin="1"/>
 <wire x1="96.52" y1="121.92" x2="99.06" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PC6(/RESET)"/>
 <wire x1="99.06" y1="116.84" x2="99.06" y2="121.92" width="0.1524" layer="91"/>
@@ -9709,7 +9741,7 @@ Team 04</text>
 <wire x1="45.72" y1="76.2" x2="46.99" y2="77.47" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="PULL_UP_2" gate="G$1" pin="2"/>
+<pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="86.36" y1="121.92" x2="83.82" y2="121.92" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="121.92" x2="83.82" y2="124.46" width="0.1524" layer="91"/>
 <pinref part="P+2" gate="VCC" pin="VCC"/>
@@ -9749,28 +9781,28 @@ Team 04</text>
 </net>
 <net name="N$2" class="0">
 <segment>
-<pinref part="LED_R1" gate="G$1" pin="2"/>
+<pinref part="R3" gate="G$1" pin="2"/>
 <pinref part="LED1" gate="G$1" pin="A"/>
 <wire x1="198.12" y1="53.34" x2="226.06" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
 <segment>
-<pinref part="LED_R2" gate="G$1" pin="2"/>
+<pinref part="R4" gate="G$1" pin="2"/>
 <pinref part="LED2" gate="G$1" pin="A"/>
 <wire x1="198.12" y1="63.5" x2="226.06" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
 <segment>
-<pinref part="LED_R3" gate="G$1" pin="2"/>
+<pinref part="R5" gate="G$1" pin="2"/>
 <pinref part="LED3" gate="G$1" pin="A"/>
 <wire x1="198.12" y1="73.66" x2="226.06" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">
 <segment>
-<pinref part="LED_R4" gate="G$1" pin="2"/>
+<pinref part="R6" gate="G$1" pin="2"/>
 <pinref part="LED4" gate="G$1" pin="A"/>
 <wire x1="198.12" y1="83.82" x2="226.06" y2="83.82" width="0.1524" layer="91"/>
 </segment>
@@ -9802,7 +9834,7 @@ Team 04</text>
 </net>
 <net name="N$9" class="0">
 <segment>
-<pinref part="LED_R3" gate="G$1" pin="1"/>
+<pinref part="R5" gate="G$1" pin="1"/>
 <wire x1="187.96" y1="73.66" x2="172.72" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PD5(T1)"/>
 <wire x1="147.32" y1="81.28" x2="165.1" y2="81.28" width="0.1524" layer="91"/>
@@ -9811,7 +9843,7 @@ Team 04</text>
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="LED_R2" gate="G$1" pin="1"/>
+<pinref part="R4" gate="G$1" pin="1"/>
 <wire x1="187.96" y1="63.5" x2="177.8" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PD6(AIN0)"/>
 <wire x1="147.32" y1="78.74" x2="162.56" y2="78.74" width="0.1524" layer="91"/>
@@ -9820,7 +9852,7 @@ Team 04</text>
 </net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="LED_R4" gate="G$1" pin="1"/>
+<pinref part="R6" gate="G$1" pin="1"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PD4(XCK/T0)"/>
 <wire x1="147.32" y1="83.82" x2="187.96" y2="83.82" width="0.1524" layer="91"/>
 </segment>
@@ -9830,28 +9862,28 @@ Team 04</text>
 <pinref part="ATMEGA328" gate="G$1" pin="PD7(AIN1)"/>
 <wire x1="147.32" y1="76.2" x2="160.02" y2="76.2" width="0.1524" layer="91"/>
 <wire x1="160.02" y1="76.2" x2="182.88" y2="53.34" width="0.1524" layer="91"/>
-<pinref part="LED_R1" gate="G$1" pin="1"/>
+<pinref part="R3" gate="G$1" pin="1"/>
 <wire x1="182.88" y1="53.34" x2="187.96" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="V_REG_RESET" class="0">
 <segment>
 <pinref part="D24V5F3" gate="A" pin="1"/>
-<pinref part="PULL_UP_1" gate="G$1" pin="1"/>
+<pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="36.83" y1="93.98" x2="20.32" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="20.32" y1="93.98" x2="17.78" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VCC_6V" class="0">
 <segment>
-<pinref part="TERMINAL_BATT_IN" gate="G$1" pin="2"/>
+<pinref part="BATTERY_IN" gate="G$1" pin="2"/>
 <wire x1="3.81" y1="139.7" x2="24.13" y2="139.7" width="0.1524" layer="91"/>
 <wire x1="24.13" y1="139.7" x2="25.4" y2="140.97" width="0.1524" layer="91"/>
 <wire x1="25.4" y1="140.97" x2="25.4" y2="143.51" width="0.1524" layer="91"/>
 <pinref part="VCC_6V_1" gate="G$1" pin="VCC_6V"/>
 </segment>
 <segment>
-<pinref part="TERMINAL_BATT_OUT" gate="G$1" pin="1"/>
+<pinref part="BATTERY_OUT" gate="G$1" pin="1"/>
 <wire x1="46.99" y1="144.78" x2="40.64" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="144.78" x2="39.37" y2="146.05" width="0.1524" layer="91"/>
 <wire x1="39.37" y1="146.05" x2="39.37" y2="147.32" width="0.1524" layer="91"/>
@@ -9868,7 +9900,7 @@ Team 04</text>
 <wire x1="15.24" y1="111.76" x2="16.51" y2="111.76" width="0.1524" layer="91"/>
 <junction x="15.24" y="111.76"/>
 <wire x1="16.51" y1="111.76" x2="17.78" y2="110.49" width="0.1524" layer="91"/>
-<pinref part="PULL_UP_1" gate="G$1" pin="2"/>
+<pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="17.78" y1="110.49" x2="17.78" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="VCC_6V_3" gate="G$1" pin="VCC_6V"/>
 </segment>
@@ -9882,7 +9914,7 @@ Team 04</text>
 <segment>
 <pinref part="VCC_6V_5" gate="G$1" pin="VCC_6V"/>
 <wire x1="93.98" y1="149.86" x2="93.98" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="LED_R5" gate="G$1" pin="1"/>
+<pinref part="R7" gate="G$1" pin="1"/>
 <wire x1="93.98" y1="147.32" x2="96.52" y2="147.32" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -9897,8 +9929,8 @@ Team 04</text>
 </net>
 <net name="N$1" class="0">
 <segment>
-<pinref part="LED_R5" gate="G$1" pin="2"/>
-<pinref part="LED5_BLUE" gate="G$1" pin="A"/>
+<pinref part="R7" gate="G$1" pin="2"/>
+<pinref part="LED5" gate="G$1" pin="A"/>
 <wire x1="106.68" y1="147.32" x2="127" y2="147.32" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -9957,7 +9989,7 @@ Team 04</text>
 <pinref part="74ACT125" gate="A" pin="O"/>
 <wire x1="200.66" y1="27.94" x2="208.28" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="208.28" y1="27.94" x2="208.28" y2="17.78" width="0.1524" layer="91"/>
-<wire x1="208.28" y1="17.78" x2="243.84" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="17.78" x2="251.46" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="DOTSTAR_LED" gate="A" pin="2"/>
 </segment>
 </net>
@@ -9966,7 +9998,7 @@ Team 04</text>
 <pinref part="74ACT125" gate="B" pin="O"/>
 <wire x1="200.66" y1="10.16" x2="208.28" y2="10.16" width="0.1524" layer="91"/>
 <wire x1="208.28" y1="10.16" x2="208.28" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="208.28" y1="15.24" x2="243.84" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="15.24" x2="251.46" y2="15.24" width="0.1524" layer="91"/>
 <pinref part="DOTSTAR_LED" gate="A" pin="3"/>
 </segment>
 </net>
@@ -9993,13 +10025,22 @@ Team 04</text>
 <segment>
 <pinref part="74ACT125" gate="P" pin="VCC"/>
 <pinref part="5V_VCC_2" gate="G$1" pin="5V_VCC"/>
-<wire x1="215.9" y1="36.83" x2="223.52" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="215.9" y1="36.83" x2="223.52" y2="34.29" width="0.1524" layer="91"/>
+<pinref part="C7" gate="G$1" pin="1"/>
+<wire x1="223.52" y1="34.29" x2="228.6" y2="34.29" width="0.1524" layer="91"/>
+<wire x1="228.6" y1="34.29" x2="228.6" y2="33.02" width="0.1524" layer="91"/>
+<junction x="223.52" y="34.29"/>
 </segment>
 <segment>
 <pinref part="DOTSTAR_LED" gate="A" pin="1"/>
-<wire x1="243.84" y1="20.32" x2="233.68" y2="20.32" width="0.1524" layer="91"/>
-<wire x1="233.68" y1="20.32" x2="233.68" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="251.46" y1="20.32" x2="243.84" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="20.32" x2="243.84" y2="22.86" width="0.1524" layer="91"/>
 <pinref part="5V_VCC_3" gate="G$1" pin="5V_VCC"/>
+</segment>
+<segment>
+<pinref part="74ACT125" gate="D" pin="OE"/>
+<wire x1="124.46" y1="0" x2="124.46" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="5V_VCC_4" gate="G$1" pin="5V_VCC"/>
 </segment>
 </net>
 </nets>
@@ -10007,8 +10048,6 @@ Team 04</text>
 </sheets>
 <errors>
 <approved hash="104,1,99.06,106.68,ATMEGA328,AVCC,VCC,,,"/>
-<approved hash="114,1,191.424,31.0727,74ACT125,D,OE,,,"/>
-<approved hash="114,1,191.424,31.0727,74ACT125,D,I,,,"/>
 <approved hash="104,1,215.9,36.83,74ACT125P,VCC,5V_VCC,,,"/>
 <approved hash="113,1,125.626,57.046,FRAME1,,,,,"/>
 </errors>
