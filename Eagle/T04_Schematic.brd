@@ -1936,11 +1936,11 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="VALUE" x="20.701" y="17.78" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="C5" library="rcl" package="C1206" value=".47uF" x="23.876" y="21.082" smashed="yes" rot="R90">
-<attribute name="NAME" x="21.844" y="22.098" size="0.635" layer="25"/>
+<attribute name="NAME" x="21.59" y="22.098" size="0.635" layer="25"/>
 <attribute name="VALUE" x="26.416" y="19.812" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C6" library="rcl" package="C1206" value="22uF" x="23.876" y="6.858" smashed="yes" rot="R270">
-<attribute name="NAME" x="21.844" y="7.874" size="0.635" layer="25"/>
+<attribute name="NAME" x="21.59" y="7.874" size="0.635" layer="25"/>
 <attribute name="VALUE" x="21.336" y="8.128" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="DOTSTAR_LED" library="pinhead" package="1X04" value="1x4" x="29.972" y="2.286" smashed="yes" rot="R180">
@@ -1948,7 +1948,7 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="VALUE" x="35.052" y="5.461" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="C7" library="rcl" package="C1206" value="100 nF" x="27.686" y="17.272" smashed="yes" rot="R90">
-<attribute name="NAME" x="25.654" y="18.288" size="0.635" layer="25"/>
+<attribute name="NAME" x="25.4" y="18.288" size="0.635" layer="25"/>
 <attribute name="VALUE" x="30.226" y="16.002" size="1.27" layer="27" rot="R90"/>
 </element>
 </elements>
