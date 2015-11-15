@@ -9225,8 +9225,8 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <parts>
 <part name="FRAME1" library="frames" deviceset="FRAME_A_L" device=""/>
 <part name="ATMEGA328" library="atmel" deviceset="MEGA8-P" device=""/>
-<part name="PIN_MMA8452Q" library="pinhead" deviceset="PINHD-1X6" device="" value="1x6"/>
-<part name="PIN_MICRO_MAESTRO" library="pinhead" deviceset="PINHD-1X5" device="" value="1x5"/>
+<part name="MMA8452Q" library="pinhead" deviceset="PINHD-1X6" device="" value="1x6"/>
+<part name="MICRO_MAESTRO" library="pinhead" deviceset="PINHD-1X5" device="" value="1x5"/>
 <part name="D24V5F3" library="pinhead" deviceset="PINHD-1X4" device="" value="1x4"/>
 <part name="TERMINAL_BATT_IN" library="pinhead" deviceset="PINHD-1X2" device="" value="1x2"/>
 <part name="TERMINAL_BATT_OUT" library="pinhead" deviceset="PINHD-1X2" device="" value="1x2"/>
@@ -9365,8 +9365,8 @@ Team 04</text>
 <instance part="FRAME1" gate="G$1" x="-13.97" y="-50.8"/>
 <instance part="FRAME1" gate="G$2" x="158.75" y="-50.8"/>
 <instance part="ATMEGA328" gate="G$1" x="121.92" y="88.9"/>
-<instance part="PIN_MMA8452Q" gate="A" x="181.61" y="137.16"/>
-<instance part="PIN_MICRO_MAESTRO" gate="A" x="222.25" y="106.68" smashed="yes">
+<instance part="MMA8452Q" gate="A" x="181.61" y="137.16"/>
+<instance part="MICRO_MAESTRO" gate="A" x="222.25" y="106.68" smashed="yes">
 <attribute name="NAME" x="210.82" y="114.935" size="1.778" layer="95"/>
 <attribute name="VALUE" x="215.9" y="96.52" size="1.778" layer="96"/>
 </instance>
@@ -9485,7 +9485,7 @@ Team 04</text>
 <wire x1="10.16" y1="137.16" x2="11.43" y2="135.89" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="PIN_MMA8452Q" gate="A" pin="6"/>
+<pinref part="MMA8452Q" gate="A" pin="6"/>
 <pinref part="GND3" gate="1" pin="GND"/>
 <wire x1="171.45" y1="130.81" x2="172.72" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="172.72" y1="132.08" x2="179.07" y2="132.08" width="0.1524" layer="91"/>
@@ -9535,7 +9535,7 @@ Team 04</text>
 <segment>
 <pinref part="GND4" gate="1" pin="GND"/>
 <wire x1="205.74" y1="115.57" x2="208.28" y2="115.57" width="0.1524" layer="91"/>
-<pinref part="PIN_MICRO_MAESTRO" gate="A" pin="1"/>
+<pinref part="MICRO_MAESTRO" gate="A" pin="1"/>
 <wire x1="208.28" y1="115.57" x2="212.09" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="212.09" y1="111.76" x2="219.71" y2="111.76" width="0.1524" layer="91"/>
 </segment>
@@ -9605,7 +9605,7 @@ Team 04</text>
 </net>
 <net name="SDA" class="0">
 <segment>
-<pinref part="PIN_MMA8452Q" gate="A" pin="2"/>
+<pinref part="MMA8452Q" gate="A" pin="2"/>
 <wire x1="179.07" y1="142.24" x2="160.02" y2="142.24" width="0.1524" layer="91"/>
 <label x="160.02" y="142.24" size="1.778" layer="95"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PC4(ADC4/SDA)"/>
@@ -9616,7 +9616,7 @@ Team 04</text>
 </net>
 <net name="SCL" class="0">
 <segment>
-<pinref part="PIN_MMA8452Q" gate="A" pin="3"/>
+<pinref part="MMA8452Q" gate="A" pin="3"/>
 <wire x1="179.07" y1="139.7" x2="162.56" y2="139.7" width="0.1524" layer="91"/>
 <label x="162.56" y="139.7" size="1.778" layer="95"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PC5(ADC5/SCL)"/>
@@ -9627,7 +9627,7 @@ Team 04</text>
 </net>
 <net name="INT0" class="0">
 <segment>
-<pinref part="PIN_MMA8452Q" gate="A" pin="4"/>
+<pinref part="MMA8452Q" gate="A" pin="4"/>
 <wire x1="179.07" y1="137.16" x2="165.1" y2="137.16" width="0.1524" layer="91"/>
 <label x="165.1" y="137.16" size="1.778" layer="95"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PD2(INT0)"/>
@@ -9640,7 +9640,7 @@ Team 04</text>
 <segment>
 <pinref part="ATMEGA328" gate="G$1" pin="PD3(INT1)"/>
 <wire x1="162.56" y1="86.36" x2="147.32" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="PIN_MMA8452Q" gate="A" pin="5"/>
+<pinref part="MMA8452Q" gate="A" pin="5"/>
 <wire x1="179.07" y1="134.62" x2="167.64" y2="134.62" width="0.1524" layer="91"/>
 <label x="167.64" y="134.62" size="1.778" layer="95"/>
 <wire x1="162.56" y1="86.36" x2="162.56" y2="129.54" width="0.1524" layer="91"/>
@@ -9734,7 +9734,7 @@ Team 04</text>
 <junction x="83.82" y="71.12"/>
 </segment>
 <segment>
-<pinref part="PIN_MMA8452Q" gate="A" pin="1"/>
+<pinref part="MMA8452Q" gate="A" pin="1"/>
 <wire x1="172.72" y1="144.78" x2="179.07" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="P+5" gate="VCC" pin="VCC"/>
 <wire x1="171.45" y1="146.05" x2="171.45" y2="147.32" width="0.1524" layer="91"/>
@@ -9777,7 +9777,7 @@ Team 04</text>
 </net>
 <net name="RXD" class="0">
 <segment>
-<pinref part="PIN_MICRO_MAESTRO" gate="A" pin="3"/>
+<pinref part="MICRO_MAESTRO" gate="A" pin="3"/>
 <wire x1="187.96" y1="106.68" x2="219.71" y2="106.68" width="0.1524" layer="91"/>
 <label x="208.28" y="106.68" size="1.778" layer="95"/>
 <pinref part="74ACT125" gate="C" pin="O"/>
@@ -9792,7 +9792,7 @@ Team 04</text>
 </net>
 <net name="SERVO_TXD" class="0">
 <segment>
-<pinref part="PIN_MICRO_MAESTRO" gate="A" pin="4"/>
+<pinref part="MICRO_MAESTRO" gate="A" pin="4"/>
 <wire x1="185.42" y1="104.14" x2="219.71" y2="104.14" width="0.1524" layer="91"/>
 <pinref part="ATMEGA328" gate="G$1" pin="PD0(RXD)"/>
 <wire x1="147.32" y1="93.98" x2="175.26" y2="93.98" width="0.1524" layer="91"/>
@@ -9873,7 +9873,7 @@ Team 04</text>
 <pinref part="VCC_6V_3" gate="G$1" pin="VCC_6V"/>
 </segment>
 <segment>
-<pinref part="PIN_MICRO_MAESTRO" gate="A" pin="2"/>
+<pinref part="MICRO_MAESTRO" gate="A" pin="2"/>
 <wire x1="219.71" y1="109.22" x2="200.66" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="200.66" y1="109.22" x2="199.39" y2="110.49" width="0.1524" layer="91"/>
 <wire x1="199.39" y1="110.49" x2="199.39" y2="114.3" width="0.1524" layer="91"/>
@@ -10007,9 +10007,9 @@ Team 04</text>
 </sheets>
 <errors>
 <approved hash="104,1,99.06,106.68,ATMEGA328,AVCC,VCC,,,"/>
-<approved hash="114,1,191.424,31.0727,BUFFER,D,OE,,,"/>
-<approved hash="114,1,191.424,31.0727,BUFFER,D,I,,,"/>
-<approved hash="104,1,215.9,36.83,BUFFERP,VCC,5V_VCC,,,"/>
+<approved hash="114,1,191.424,31.0727,74ACT125,D,OE,,,"/>
+<approved hash="114,1,191.424,31.0727,74ACT125,D,I,,,"/>
+<approved hash="104,1,215.9,36.83,74ACT125P,VCC,5V_VCC,,,"/>
 <approved hash="113,1,125.626,57.046,FRAME1,,,,,"/>
 </errors>
 </schematic>
