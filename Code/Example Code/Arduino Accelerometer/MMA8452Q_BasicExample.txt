@@ -1,0 +1,2 @@
+This program was taken from https://github.com/sparkfun/MMA8452_Accelerometer/blob/QC-Rev/Firmware/MMA8452Q_BasicExample/MMA8452Q_BasicExample.ino
+Used to get data from accelerometer and convert it to an angle, displaying the angle of the accelerometer on screen.
