@@ -38,7 +38,7 @@ void USARTtransmit(uint8_t data);
 void USARTSetTarget(int servo_angle, uint8_t channelNum);
 void USARTSetSpeed(uint16_t speed);
 void USARTSetAcceleration(uint16_t acceleration);
-void USARTSetMultipleTargets(uint16_t servo_angle1, uint16_t servo_angle2, uint16_t servo_angle3);
+void USARTSetMultipleTargets(uint16_t * servo_angle);
 void TWIInit(void);
 void TWIStart();
 void TWIStop();
@@ -60,7 +60,8 @@ uint16_t AngleToPWM(int angle);
 int main()
 {
 	int x, y, z;
-
+	int * servoAnglePositions;
+	
     //Initialize USART and set servos to home position
 	InitServocontroller();
 	
@@ -81,7 +82,7 @@ int main()
 		//SERVO POSITION CALCULATION
 
 		//Send positions to servos
-		USARTSetMultipleTargets(/*servo1*/,/*servo2*/,/*servo3*/);
+		USARTSetMultipleTargets(/*servo_array*/);
 		
 		//UPDATE STATUS LEDS
 		
@@ -210,37 +211,29 @@ void USARTSetAcceleration(uint16_t acceleration)
 
 /*
  * Set the positions of all servos (so they receive commands at same time and move in unison)
- * Inputs: servo_angle1 - angle of the first servo (servo in lowest channel of three)
- *         servo_angle2 - angle of the second servo (servo in middle channel of three)
- *         servo_angle3 - angle of the third servo (servo in highest channel of three)
+ * Inputs: servo_angle - array containing the angles of the servos to move, the order should be in ascending channel number order
  */
-void USARTSetMultipleTargets(uint16_t servo_angle1, uint16_t servo_angle2, uint16_t servo_angle3)
+void USARTSetMultipleTargets(uint16_t * servo_angle)
 {
 	uint8_t channelNum = USART_START_SERVO_CHANNEL;
-	uint16_t servoPWM1, servoPWM2, servoPWM3;
+	uint16_t servoPWM;
+	int i;
 	
-	USARTtransmit(0xAA);     //send the baud rate indication byte to servo controller
-	USARTtransmit(0x0C);     //device number
-	USARTtransmit(0x1F);     //command byte: set multiple targets
-	USARTtransmit(0x03);     //number of targets
-	USARTtransmit(channelNum);     //channel number of first servo
+	USARTtransmit(0xAA);                 //send the baud rate indication byte to servo controller
+	USARTtransmit(0x0C);                 //device number
+	USARTtransmit(0x1F);                 //command byte: set multiple targets
+	USARTtransmit(USART_NUM_SERVOS);     //number of targets
+	USARTtransmit(channelNum);           //channel number of first servo
 	
-	//convert angles to PWM, multiply value by 4 to get in quarter micro seconds
-	servoPWM1 = AngleToPWM(servo_angle1) * 4;
-	servoPWM2 = AngleToPWM(servo_angle2) * 4;
-	servoPWM3 = AngleToPWM(servo_angle3) * 4;
-      
-    //position of first servo
-	USARTtransmit(servoPWM1 & 0x7F);     //send least significant byte of servo position
-	USARTtransmit((servoPWM1 >> 7) & 0x7F);     //send most significant byte of servo position
-    
-	//position of second servo
-	USARTtransmit(servoPWM2 & 0x7F);     //send least significant byte of servo position
-	USARTtransmit((servoPWM2 >> 7) & 0x7F);     //send most significant byte of servo position
-    
-	//position of third servo
-	USARTtransmit(servoPWM3 & 0x7F);     //send least significant byte of servo position
-	USARTtransmit((servoPWM3 >> 7) & 0x7F);     //send most significant byte of servo position
+	for(i = 0; i < USART_NUM_SERVOS; ++i)
+	{
+		//convert angles to PWM, multiply value by 4 to get in quarter micro seconds
+		servoPWM = AngleToPWM(servo_angle[i]) * 4;
+		  
+		//position of first servo
+		USARTtransmit(servoPWM & 0x7F);     //send least significant byte of servo position
+		USARTtransmit((servoPWM >> 7) & 0x7F);     //send most significant byte of servo position
+	}
 	
 	return;
 }

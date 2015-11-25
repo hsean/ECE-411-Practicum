@@ -214,9 +214,7 @@ void USARTSetAcceleration(uint16_t acceleration)
 
 /*
  * Set the positions of all servos (so they receive commands at same time and move in unison)
- * Inputs: servo_angle1 - angle of the first servo (servo in lowest channel of three)
- *         servo_angle2 - angle of the second servo (servo in middle channel of three)
- *         servo_angle3 - angle of the third servo (servo in highest channel of three)
+ * Inputs: servo_angle - array containing the angles of the servos to move, the order should be in ascending channel number order
  */
 void USARTSetMultipleTargets(uint16_t * servo_angle)
 {
