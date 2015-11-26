@@ -1,0 +1,18 @@
+NUMBER MAPPING
+
+want to map angles 0 - 180 to the 
+PWM values of the HS-322 servo
+
+PWM goes from 600us to 2400us
+So I need to map 0 to 600 and 180 to 2400 and 
+everything in between.  
+Link:http://stackoverflow.com/questions/345187/math-mapping-numbers
+
+Y = (X-A)/(B-A)*(D-C)+C
+
+So, input number falls between A and B where X is the input.
+Output range is C and D.
+
+
+Additional Source:
+http://stackoverflow.com/questions/5731863/mapping-a-numeric-range-onto-another

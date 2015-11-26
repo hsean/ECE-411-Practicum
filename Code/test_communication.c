@@ -17,7 +17,7 @@ void TWIWrite(uint8_t u8data);
 uint8_t TWIReadACK(void);
 uint8_t TWIReadNACK(void);
 void TWIGetStatus(void);
-int ConvertData(uint8_t data,uint8_t data2);
+int ConvertData(uint8_t data);
 void GetData(uint8_t data);
 
 
@@ -77,8 +77,9 @@ int main() {
 	TWIStart();         //start condition
 	TWIWrite(0x3A);     //slave address  with R/W bit set to 0 (write)
 	TWIWrite(0x2A);     //register to read: CTRL_REG1 (system control 1 register)
-	TWIWrite(0x01);     //(bit 5 = 1, bit 4 = 0, bit 3 = 0) - data rate to 50 Hz
+	TWIWrite(0x23);     //(bit 5 = 1, bit 4 = 0, bit 3 = 0) - data rate to 50 Hz
 	                    //(bit 1 = 1) - F_READ to fast read mode (ignore lsb registers)
+						//(bit 0 = 1) - go from standby mode to active mode
 	TWIStop();
 	
 	
@@ -93,18 +94,15 @@ int main() {
 		TWIWrite(0x3B);          //slave address with R/W bit set to 1 (read)
 		
 		x = TWIReadACK();    //read x y z data, change from G's to angle
-		x2 = TWIReadACK();
 		y = TWIReadACK();
-		y2 = TWIReadACK();
-		z = TWIReadACK();
-		z2 = TWIReadNACK();
+		z = TWIReadNACK();
 		
 		TWIStop();               //send stop condition
 
 		int xExt, yExt, zExt;
-		xExt = ConvertData(x,x2);
-		yExt = ConvertData(y,y2);
-		zExt = ConvertData(z,z2);
+		xExt = ConvertData(x);
+		yExt = ConvertData(y);
+		zExt = ConvertData(z);
 		
 		//GetData(x);
 		//GetData(x2);
@@ -237,13 +235,12 @@ void GetData(uint8_t data)
 }
 
 
-int ConvertData(uint8_t data,uint8_t data2)
+int ConvertData(uint8_t data)
 {
 	    int dataExt;
 		float superAngle;
 
-	    dataExt = (data << 8) | data2;
-		dataExt = dataExt >> 4;
+	    dataExt = data << 4;
 
 	    /*if(data > 0x7F)
 			dataExt = ~(dataExt | 0xFFFF0000)+1;
