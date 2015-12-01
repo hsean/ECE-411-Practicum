@@ -56,6 +56,36 @@ public:
 	//**************************************************
 	int setSpeed(int speed);
 
+	//**************************************************
+	// This function gets target of servo1
+	// Returns: target of servo1
+	//**************************************************
+	int getServo1();
+
+	//**************************************************
+	// This function gets target of servo2
+	// Returns: target of servo2
+	//**************************************************
+	int getServo2();
+
+	//**************************************************
+	// This function gets target of servo3
+	// Returns: target of servo3
+	//**************************************************
+	int getServo3();
+
+	//**************************************************
+	// This function gets the acceleration
+	// Returns: acceleration
+	//**************************************************
+	int getAcceleration();
+
+	//**************************************************
+	// This function gets the speed of all servos
+	// Returns: speed
+	//**************************************************
+	int getSpeed();
+
 private:
 	//**************************************************
 	// Read from servo controller

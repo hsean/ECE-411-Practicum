@@ -141,3 +141,55 @@ int CServoController::setSpeed(int speed)
 	// TODO: write targets to servo controller
 	return 0;
 }
+
+
+//**************************************************
+// This function gets target of servo1
+// Returns: target of servo1
+//**************************************************
+int CServoController::getServo1()
+{
+	return mServo1Pos;
+}
+
+
+//**************************************************
+// This function gets target of servo2
+// Returns: target of servo2
+//**************************************************
+int CServoController::getServo2()
+{
+	return mServo2Pos;
+}
+
+
+//**************************************************
+// This function gets target of servo3
+// Returns: target of servo3
+//**************************************************
+int CServoController::getServo3()
+{
+	return mServo3Pos;
+}
+
+
+//**************************************************
+// This function gets the acceleration
+// Returns: acceleration
+//**************************************************
+int CServoController::getAcceleration()
+{
+	return mAcceleration;
+}
+
+
+//**************************************************
+// This function gets the speed of all servos
+// Returns: speed
+//**************************************************
+int CServoController::getSpeed()
+{
+	return mSpeed;
+}
+
+

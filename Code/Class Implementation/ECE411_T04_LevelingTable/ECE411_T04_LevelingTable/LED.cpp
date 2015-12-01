@@ -37,6 +37,7 @@ CLED::~CLED(void)
 int CLED::setAddress(int address)
 {
 	mAddress = address;
+	return 0;
 }
 
 //***************************************
@@ -47,6 +48,7 @@ int CLED::setAddress(int address)
 int CLED::setColor(int color)
 {
 	mColor = color;
+	return 0;
 }
 
 //***************************************
@@ -57,4 +59,36 @@ int CLED::setColor(int color)
 int CLED::setBrightness(int brightness)
 {
 	mBrightness = brightness;
+	return 0;
 }
+
+//***************************************
+// Desc: Gets the address of the LED
+// Return: LED address
+//***************************************
+int CLED::getAddress()
+{
+	return mAddress;
+}
+
+
+//***************************************
+// Desc: Gets the color of the LED
+// Return: LED color
+//***************************************
+int CLED::getColor()
+{
+	return mColor;
+}
+
+
+//***************************************
+// Desc: Gets the brightness of the LED
+// Return: LED brightness
+//***************************************
+int CLED::getBrightness()
+{
+	return mBrightness;
+}
+
+

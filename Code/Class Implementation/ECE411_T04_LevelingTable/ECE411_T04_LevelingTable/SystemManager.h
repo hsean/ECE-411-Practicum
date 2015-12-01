@@ -47,7 +47,6 @@ private:
 	CAccelerometer* mAccelerometer;
 	CServoController* mServoController;
 	CLEDStrip* mLEDStrip;
-	CAccelerometer* mAccelerometer;
 	AccelData* currentAccelData[NUM_STORED_DATA];
 	AccelData* previousAccelData[NUM_STORED_DATA];
 	AccelData* newAccelAvg;

@@ -39,6 +39,20 @@ public:
 	//*************************************************
 	int setBrightness(int LEDAddress, int brightness);
 
+	//*************************************************
+	// Desc: returns the color of an LED
+	// Param: LEDAddress - position of LED in array
+	// Return: value of color 
+	//*************************************************
+	int getColor(int LEDAddress);
+
+	//*************************************************
+	// Desc: returns the brightness of an LED
+	// Param: LEDAddress - position of LED in array
+	// Return: value of brightness
+	//*************************************************
+	int getBrightness(int LEDAddress);
+
 private:
 	//*************************************************
 	// Read data from LED strip
@@ -50,6 +64,6 @@ private:
 	//*************************************************
 	int write();
 
-	CLED mLEDArray[];  // array of LED objects
+	CLED mLEDArray[DEFAULT_NUM_LEDS];  // array of LED objects
 };
 

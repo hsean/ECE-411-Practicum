@@ -34,6 +34,24 @@ public:
 	//***************************************
 	int setBrightness(int brightness);
 
+	//***************************************
+	// Desc: Gets the address of the LED
+	// Return: LED address
+	//***************************************
+	int getAddress();
+
+	//***************************************
+	// Desc: Gets the color of the LED
+	// Return: LED color
+	//***************************************
+	int getColor();
+
+	//***************************************
+	// Desc: Gets the brightness of the LED
+	// Return: LED brightness
+	//***************************************
+	int getBrightness();
+
 private:
 	int mAddress;
 	int mColor;

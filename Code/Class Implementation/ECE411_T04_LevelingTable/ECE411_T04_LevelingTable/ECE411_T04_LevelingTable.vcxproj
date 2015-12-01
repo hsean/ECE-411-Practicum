@@ -74,6 +74,7 @@
     <ClCompile Include="Accelerometer.cpp" />
     <ClCompile Include="LED.cpp" />
     <ClCompile Include="LEDStrip.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="ServoController.cpp" />
     <ClCompile Include="SystemManager.cpp" />
   </ItemGroup>

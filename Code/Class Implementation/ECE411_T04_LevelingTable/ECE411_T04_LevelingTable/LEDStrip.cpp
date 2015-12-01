@@ -36,10 +36,8 @@ CLEDStrip::CLEDStrip(int numLEDs, int iniColor, int iniBrightness)
 }
 
 
-CLEDStrip::CLEDStrip::~CLEDStrip(void)
-{
-	delete[] mLEDArray;
-}
+CLEDStrip::~CLEDStrip()
+{}
 
 
 //***************************************
@@ -77,4 +75,25 @@ int CLEDStrip::setBrightness(int LEDAddress, int brightness)
 	return 0;
 }
 
+
+//*************************************************
+// Desc: returns the color of an LED
+// Param: LEDAddress - position of LED in array
+// Return: value of color 
+//*************************************************
+int CLEDStrip::getColor(int LEDAddress)
+{
+	return mLEDArray[LEDAddress].getColor();
+}
+
+
+//*************************************************
+// Desc: returns the brightness of an LED
+// Param: LEDAddress - position of LED in array
+// Return: value of brightness
+//*************************************************
+int CLEDStrip::getBrightness(int LEDAddress)
+{
+	return mLEDArray[LEDAddress].getBrightness();
+}
 
