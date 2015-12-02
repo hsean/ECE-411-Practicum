@@ -20,15 +20,15 @@
 #define MAX_ANGLE 180                               //maximum servo angle
 #define PWM_MIN 800                                 //minimum servo pulse width modulation value
 #define PWM_MAX 2400                                //maximum servo pulse width modulation value
-#define ACCL_SLV_ADDR 0X3A                          //slave addres of accelerometer
+#define ACCL_SLV_ADDR 0X3A                          //slave address of accelerometer
 #define ACCL_CTRL_REG1 0X2A                         //address of accelerometer control register
 #define ACCL_OUT_X_MSB 0x01                         //address of accelerometer x msb register
-#define ACCL_NUM_SAMPLE 10                          //number of times to sample the accelerometer
+#define ACCL_NUM_SAMPLE 20                          //number of times to sample the accelerometer
 #define USART_FOSC 8000000                          //frequency of the ATmega328 oscillator
 #define USART_BAUD 9600                             //target baud rate
-#define USART_MYUBRR ((fosc / (16 * baud)) - 1)     //calculation of the value to input into the USART baud rate register
+#define USART_MYUBRR ((USART_FOSC / (16 * USART_BAUD)) - 1)     //calculation of the value to input into the USART baud rate register
 #define USART_NUM_SERVOS 0x03                       //number of servos
-#define USART_START_SERVO_CHANNEL 0x07              //starting channel of servos (servos should be placed in successive channels)
+#define USART_START_SERVO_CHANNEL 0x00              //starting channel of servos (servos should be placed in successive channels)
 #define SERVO_MV_DELAY_MS 5                         //delay to allow servos to move
 
 
@@ -47,7 +47,7 @@ uint8_t TWIReadACK();
 uint8_t TWIReadNACK();
 void TWIGetStatus(int operation);
 void GetData(uint8_t data);
-int ConvertData(uint8_t dataMSB, uint8_t dataLSB);
+int ConvertData(uint8_t dataByte);
 void InitAcclerometer();
 void InitServocontroller();
 void SampleAccelerometer(int * x, int * y, int * z);
@@ -62,6 +62,9 @@ int main()
 	int x, y, z;
 	int * servoAnglePositions;
 	
+	//temporary stuff
+	DDRD |= (1<<DDD5)|(1<<DDD7);          // set LED pin PD1 to output
+	
     //Initialize USART and set servos to home position
 	InitServocontroller();
 	
@@ -75,14 +78,29 @@ int main()
 	while(1)
 	{
 		//Sample accelerometer
-		SampleAccelerometer(&x, &y, &z)
+		SampleAccelerometer(&x, &y, &z);
+		if(fabs(x) >= 45)
+			PORTD |= (1<<PORTD5);   // drive PD1 high
+		else
+			PORTD &= ~(1<<PORTD5);  // drive PD1 low
 		
+		if(fabs(y) >= 45)
+			PORTD |= (1<<PORTD7);   // drive PD1 high
+		else
+			PORTD &= ~(1<<PORTD7);  // drive PD1 low
 		//UPDATE STATUS LEDS
 		
 		//SERVO POSITION CALCULATION
 
 		//Send positions to servos
-		USARTSetMultipleTargets(/*servo_array*/);
+		for(i = 10; i < 90; i += 10)
+		{
+			USARTSetTarget(i,0x00);
+			USARTSetTarget(i,0x01);
+			USARTSetTarget(i,0x02);
+			_delay_ms(20);     //servo movement delay
+		}
+		
 		
 		//UPDATE STATUS LEDS
 		
@@ -90,7 +108,7 @@ int main()
 		
 		//UPDATE STATUS LEDS
 		
-		_delay_ms(5)     //servo movement delay
+		_delay_ms(5);     //servo movement delay
 	}
 	
 	return 0;	
@@ -102,7 +120,7 @@ int main()
  */
 void USARTinit()
 {
-	uint16_t myubrr = MYUBRR;     //the value to store into register UBRR (baud rate register)
+	uint16_t myubrr = USART_MYUBRR;     //the value to store into register UBRR (baud rate register)
 	
 	//set baud rate
 	UBRR0H = (uint8_t) (myubrr>>8);     //get most significant byte
@@ -393,16 +411,22 @@ void GetData(uint8_t data)
  *        dataLSB - The least significant byte of the two data bytes received from accelerometer
  * Output: Returns the corresponding angle value
  */
-int ConvertData(uint8_t dataMSB, uint8_t dataLSB)
+int ConvertData(uint8_t dataByte)
 {
 	int data;     //container for merged MSB and LSB of the accelerometer data
 	int angle;     //the converted angle value
 	float gValue;     //the accelerometer data converted to G's
 
-	data = (dataMSB << 8) | dataLSB;     //merge MSB and LSB
-	data = data >> 4;     //shift right 4 (because accelerometer LSB last 4 bits are garbage)
+	data = dataByte;
+	
+	//convert from two's complement
+	if(data > 0x7F)
+	{
+		data = ~(data | 0xFFFFFF00)+1;
+		data *= -1;
+	}
 
-	gValue = (float) data / (float)(1 << 11) * (float) 2;     //convert to G's
+	gValue = (float) data * (float) .015625;     //convert to G's
 	angle = (int) (gValue * 90);     //convert to angle
 		
 	return angle;
@@ -420,9 +444,9 @@ void InitAcclerometer()
 	TWIWrite(0x2A);              //register to write to: CTRL_REG1 (system control 1 register)
 	
 	/********* IF NOT USING FAST READ MODE ********/
-	/**/            TWIWrite(0x21)              /**/
+	/**            TWIWrite(0x21)              **/
 	/**********************************************/
-	//TWIWrite(0x23);     //(bit 5 = 1, bit 4 = 0, bit 3 = 0) - data rate to 50 Hz
+	TWIWrite(0x23);       //(bit 5 = 1, bit 4 = 0, bit 3 = 0) - data rate to 50 Hz
 	                      //(bit 1 = 1) - F_READ to fast read mode (ignore lsb registers)
 						  //(bit 0 = 1) - Active mode (turn the accelerometer on)
 						  
@@ -437,7 +461,7 @@ void InitServocontroller()
 {
 	USARTinit();                                                   //initialize ATmega328 USART
 	USARTSetAcceleration(0x00);                                    //max acceleration speed
-	USARTSetMutlipleTargets(/*servo1*/,/*servo2*/,/*servo3*/);     //move servos to home position
+	//USARTSetMutlipleTargets(/*servo1*/,/*servo2*/,/*servo3*/);     //move servos to home position
 	_delay_ms(SERVO_MV_DELAY_MS);                                  //servo movement delay
 }
 
@@ -451,7 +475,7 @@ void InitServocontroller()
 void SampleAccelerometer(int * x, int * y, int * z)
 {
 	int i;
-	uint8_t xMSB, xLSB, yMSB, yLSB, zMSB, zLSB;
+	uint8_t xByte, yByte, zByte;
 	
 	//initialize x y z to 0
 	(*x) = 0;
@@ -466,20 +490,17 @@ void SampleAccelerometer(int * x, int * y, int * z)
 		TWIWrite(ACCL_OUT_X_MSB);             //register to read (OUT_X_MSB)
 		TWIStart();                           //repeated start condition
 		TWIWrite((ACCL_SLV_ADDR | 0x01));     //slave address with R/W bit set to 1 (read)
-				
-		xMSB = TWIReadACK();     //read x y z data
-		xLSB = TWIReadACK();
-		yMSB = TWIReadACK();
-		yLSB = TWIReadACK();
-		zMSB = TWIReadACK();
-		zLSB = TWIReadNACK();
+	
+		xByte = TWIReadACK();     //read x y z data
+		yByte = TWIReadACK();
+		zByte = TWIReadNACK();
 				
 		TWIStop();     //send stop condition
 
 		//Convert accelerometer data into angles
-		(*x) += ConvertData(xMSB,xLSB);
-		(*y) += ConvertData(yMSB,yLSB);
-		(*z) += ConvertData(zMSB,zLSB);
+		(*x) += ConvertData(xByte);
+		(*y) += ConvertData(yByte);
+		(*z) += ConvertData(zByte);
 	}
 	
 	//average the x y z values
@@ -487,7 +508,7 @@ void SampleAccelerometer(int * x, int * y, int * z)
 	(*y) /= ACCL_NUM_SAMPLE;
 	(*z) /= ACCL_NUM_SAMPLE;
 	
-	return 0;
+	return;
 }
 
 
@@ -501,12 +522,12 @@ uint16_t AngleToPWM(int angle)
 	int PWM;     //pulse width modulation value to return
 	
 	//angle definitions incorrect or input out of bounds
-	if ((MAX_ANGLE <= MIN_ANGLE) || (x < MIN_ANGLE) || x > MAX_ANGLE))
+	if ((MAX_ANGLE <= MIN_ANGLE) || (angle < MIN_ANGLE) || (angle > MAX_ANGLE))
 		PWM = -1;
 	
 	//convert to pwm value
 	else
-		PWM = (x - MIN_ANGLE) * (PWM_MAX - PWM_MIN) / (MAX_ANGLE - MIN_ANGLE) + PWM_MIN;
+		PWM = (angle - MIN_ANGLE) * (PWM_MAX - PWM_MIN) / (MAX_ANGLE - MIN_ANGLE) + PWM_MIN;
 	
 	return (uint16_t) PWM;
 }
