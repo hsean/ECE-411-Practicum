@@ -11,6 +11,8 @@
 //#include <avr/power.h> // ENABLE THIS LINE FOR GEMMA OR TRINKET
 
 #define NUMPIXELS 5 // Number of LEDs in strip
+#define DELAY 1000  // Delay of color change
+#define INITIAL_COLOR 0x010000  // RGB initial color 24-bit
 
 // Here's how to control the LEDs from any two pins:
 #define DATAPIN    4
@@ -40,19 +42,19 @@ void setup() {
 // This requires about 200 mA for all the 'on' pixels + 1 mA per 'off' pixel.
 
 int      head  = 0, tail = -1; // Index of first 'on' and 'off' pixels
-uint32_t color = 0x050000;      // 'On' color (starts red)
+uint32_t color = INITIAL_COLOR;      // 'On' color (starts red)
 
 void loop() {
 
   strip.setPixelColor(head, color); // 'On' pixel at head
   strip.setPixelColor(tail, 0);     // 'Off' pixel at tail
   strip.show();                     // Refresh strip
-  delay(500);                        // Pause 20 milliseconds (~50 FPS)
+  delay(DELAY);                        // Pause 20 milliseconds (~50 FPS)
 
   if(++head >= NUMPIXELS) {         // Increment head index.  Off end of strip?
     head = 0;                       //  Yes, reset head index to start
     if((color >>= 8) == 0)          //  Next color (R->G->B) ... past blue now?
-      color = 0x050000;             //   Yes, reset to red
+      color = INITIAL_COLOR;             //   Yes, reset to red
   }
   if(++tail >= NUMPIXELS) tail = 0; // Increment, reset tail index
 }
