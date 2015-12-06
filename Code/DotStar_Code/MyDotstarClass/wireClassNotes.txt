@@ -1,0 +1,405 @@
+/******************************************************************************
+ * DESC: This is a general class for managing GPIO in the ATMEGA328
+ *
+ *	CAPABILITIES: Needs to be able to set pins as OUTPUT, INPUT, HIGH,
+ *	              and LOW, regardless of port associations
+ ******************************************************************************/
+ // a pin has a PORT associated with it.  These ports can represented with
+ // an enumeration
+ enum Port{PORTB, PORTC, PORTD, ERROR};
+ enum LogicLevel{LOW = 0, HIGH = 1};
+ 
+ port pinPort;  // hold port of pin
+ 
+// we have 3 PORTS
+// 8 pins in PORTB
+// 7 pins in PORTC
+// 8 pins in PORTD
+switch(pin)	
+{
+	pin#1  -> PORTC
+	pin#2  -> PORTD
+	pin#3  -> PORTD
+	pin#4  -> PORTD
+	pin#5  -> PORTD
+	pin#6  -> PORTD
+	pin#9  -> PORTB
+	pin#10 -> PORTB
+	pin#11 -> PORTD
+	pin#12 -> PORTD
+	pin#13 -> PORTD
+	pin#14 -> PORTB
+	pin#15 -> PORTB
+	pin#16 -> PORTB
+	pin#17 -> PORTB
+	pin#18 -> PORTB
+	pin#19 -> PORTB
+	pin#23 -> PORTC
+	pin#24 -> PORTC
+	pin#25 -> PORTC
+	pin#26 -> PORTC
+	pin#27 -> PORTC
+	pin#28 -> PORTC
+}
+
+// Here is the properly coded function
+switch(pin)
+{
+	case 1: pinPort = PORTC; break;
+	case 2: pinPort = PORTD; break;
+	case 3: pinPort = PORTD; break;
+	case 4: pinPort = PORTD; break;
+	case 5: pinPort = PORTD; break;
+	case 6: pinPort = PORTD; break;
+	case 9: pinPort = PORTB; break;
+	case 10: pinPort = PORTB; break;
+	case 11: pinPort = PORTD; break;
+	case 12: pinPort = PORTD; break;
+	case 13: pinPort = PORTD; break;
+	case 14: pinPort = PORTB; break;
+	case 15: pinPort = PORTB; break;
+	case 16: pinPort = PORTB; break;
+	case 17: pinPort = PORTB; break;
+	case 18: pinPort = PORTB; break;
+	case 19: pinPort = PORTB; break;
+	case 23: pinPort = PORTC; break;
+	case 24: pinPort = PORTC; break;
+	case 25: pinPort = PORTC; break;
+	case 26: pinPort = PORTC; break;
+	case 27: pinPort = PORTC; break;
+	case 28: pinPort = PORTC; break;
+	default: return ERROR;
+}
+
+// This function changes a passed pin to an output
+// and sets it to output HIGH or LOW
+int pinOutput(uint8_t pinNumber, LogicLevel output)
+{	
+	// first find port
+	Port myPort = getPort(pinNumber);
+	
+	// change pin to output and change logic level
+	switch(myPort)
+	{
+		case Port::ERROR:
+		{
+			return -1;
+		}
+		case Port::PORTB:
+		{
+			bportOut(pinNumber, output);
+			return 0;
+		}
+		case Port::PORTC:
+		{
+			cportOut(pinNumber, output);
+			return 0;
+		}
+		case Port::PORTD:
+		{
+			dportOut(pinNumber, output);
+			return 0;
+		}
+		default:
+		{   // should not be able to get here
+			return -1;
+		}
+	}
+}
+
+
+// This function changes a pin to an input
+void pinInput(uint8_t pinNumber)
+{
+	// first find port
+	Port myPort = getPort(pinNumber);
+	
+	// change pin to input
+	switch(myPort)
+	{
+		case Port::ERROR:
+		{
+			return -1;
+		}
+		case Port::PORTB:
+		{
+			bportIn(pinNumber);
+			return 0;
+		}
+		case Port::PORTC:
+		{
+			cportIn(pinNumber);
+			return 0;
+		}
+		case Port::PORTD:
+		{
+			dportIn(pinNumber);
+			return 0;
+		}
+		default:
+		{   // should not be able to get here
+			return -1;
+		}
+	}
+}
+
+Port getPort(uint8_t pinNumber)
+{
+	// find and output port
+	switch(pin)
+{
+	case 1: return Port::PORTC;
+	case 2: return Port::PORTD;
+	case 3: return Port::PORTD;
+	case 4: return Port::PORTD;
+	case 5: return Port::PORTD;
+	case 6: return Port::PORTD;
+	case 9: return Port::PORTB;
+	case 10: return Port::PORTB;
+	case 11: return Port::PORTD;
+	case 12: return Port::PORTD;
+	case 13: return Port::PORTD;
+	case 14: return Port::PORTB;
+	case 15: return Port::PORTB;
+	case 16: return Port::PORTB;
+	case 17: return Port::PORTB;
+	case 18: return Port::PORTB;
+	case 19: return Port::PORTB;
+	case 23: return Port::PORTC;
+	case 24: return Port::PORTC;
+	case 25: return Port::PORTC;
+	case 26: return Port::PORTC;
+	case 27: return Port::PORTC;
+	case 28: return Port::PORTC;
+	default: return Port::ERROR;  // pin not found
+}
+
+
+// sets pin as output by writing 1 to DDRB register
+// and using PORTB to set logic level
+void bportOut(uint8_t pin, LogicLevel level)
+{
+	// set pin as output and Logic Level
+	switch(pin)
+	{
+		case 9: // (PIN9 = PB6)
+		{	DDRB |= (1<<PORTB6);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTB |= (1<<DDB6) : PORTB &= ~(1<<DDB6);
+			break;}
+		case 10: // (PIN10 = PB7)
+		{	DDRB |= (1<<PORTB7);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTB |= (1<<DDB7) : PORTB &= ~(1<<DDB7);
+			break;}
+		case 14: // (PIN14 = PB0)
+		{	DDRB |= (1<<PORTB0);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTB |= (1<<DDB0) : PORTB &= ~(1<<DDB0);
+			break;}
+		case 15: // (PIN15 = PB1)
+		{	DDRB |= (1<<PORTB1);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTB |= (1<<DDB1) : PORTB &= ~(1<<DDB1);
+			break;}
+		case 16: // (PIN16 = PB2)
+		{	DDRB |= (1<<PORTB2);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTB |= (1<<DDB2) : PORTB &= ~(1<<DDB2);
+			break;}
+		case 17: // (PIN17 = PB3)
+		{	DDRB |= (1<<PORTB3);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTB |= (1<<DDB3) : PORTB &= ~(1<<DDB3);
+			break;}
+		case 18: // (PIN18 = PB4)
+		{	DDRB |= (1<<PORTB4);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTB |= (1<<DDB4) : PORTB &= ~(1<<DDB4);
+			break;}
+		case 19: // (PIN19 = PB5)
+		{	DDRB |= (1<<PORTB5);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTB |= (1<<DDB5) : PORTB &= ~(1<<DDB5);
+			break;}
+	}	
+}
+
+
+// sets pin as output by writing 1 to DDRC register
+// and using PORTC to set logic level
+void cportOut(uint8_t pin, LogicLevel)
+{
+	// set pin as output and Logic Level
+	switch(pin)
+	{
+		case 1: // (PIN1 = PC6)
+		{	DDRC |= (1<<PORTC6);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTC |= (1<<DDC6) : PORTB &= ~(1<<DDC6);
+			break;}
+		case 23: // (PIN23 = PC0)
+		{	DDRC |= (1<<PORTC0);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTC |= (1<<DDC0) : PORTB &= ~(1<<DDC0);
+			break;}
+		case 24: // (PIN24 = PC1)
+		{	DDRC |= (1<<PORTC1);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTC |= (1<<DDC1) : PORTB &= ~(1<<DDC1);
+			break;}
+		case 25: // (PIN25 = PC2)
+		{	DDRC |= (1<<PORTC2);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTC |= (1<<DDC2) : PORTB &= ~(1<<DDC2);
+			break;}
+		case 26: // (PIN26 = PC3)
+		{	DDRC |= (1<<PORTC3);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTC |= (1<<DDC3) : PORTB &= ~(1<<DDC3);
+			break;}
+		case 27: // (PIN27 = PC4)
+		{	DDRC |= (1<<PORTC4);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTC |= (1<<DDC4) : PORTB &= ~(1<<DDC4);
+			break;}
+		case 28: // (PIN28 = PC5)
+		{	DDRC |= (1<<PORTC5);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTC |= (1<<DDC5) : PORTB &= ~(1<<DDC5);
+			break;}
+	}	
+}
+
+
+// sets pin as output by writing 1 to DDRD register
+// and using PORTD to set logic level
+void dportOut(uint8_t pin, LogicLevel)
+{
+	// set pin as output and Logic Level
+	switch(pin)
+	{
+		case 2: // (PIN2 = PD0)
+		{	DDRD |= (1<<PORTD0);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTD |= (1<<DDD0) : PORTB &= ~(1<<DDD0);
+			break;}
+		case 3: // (PIN3 = PD1)
+		{	DDRD |= (1<<PORTD1);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTD |= (1<<DDD1) : PORTB &= ~(1<<DDD1);
+			break;}
+		case 4: // (PIN4 = PD2)
+		{	DDRD |= (1<<PORTD2);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTD |= (1<<DDD2) : PORTB &= ~(1<<DDD2);
+			break;}
+		case 5: // (PIN5 = PD3)
+		{	DDRD |= (1<<PORTD3);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTD |= (1<<DDD3) : PORTB &= ~(1<<DDD3);
+			break;}
+		case 6: // (PIN6 = PD4)
+		{	DDRD |= (1<<PORTD4);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTD |= (1<<DDD4) : PORTB &= ~(1<<DDD4);
+			break;}
+		case 11: // (PIN11 = PD5)
+		{	DDRD |= (1<<PORTD5);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTD |= (1<<DDD5) : PORTB &= ~(1<<DDD5);
+			break;}
+		case 12: // (PIN12 = PD6)
+		{	DDRD |= (1<<PORTD6);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTD |= (1<<DDD6) : PORTB &= ~(1<<DDD6);
+			break;}
+		case 13: // (PIN13 = PD7)
+		{	DDRD |= (1<<PORTD7);  // set as output
+			(level == HIGH)?      // if HIGH, set output HIGH, else set LOW
+			PORTD |= (1<<DDD7) : PORTB &= ~(1<<DDD7);
+			break;}
+	}	
+}
+
+
+// sets pin as input by writing 0 to DDRB register
+void bportIn(uint8_t pin)
+{
+	// set pin as input
+	switch(pin)
+	{
+		case 9: // (PIN9 = PB6)
+		{	DDRB &= ~(1<<PORTB6); break;} // set as input
+		case 10: // (PIN10 = PB7)
+		{	DDRB &= ~(1<<PORTB7); break;}// set as input
+		case 14: // (PIN14 = PB0)
+		{	DDRB &= ~(1<<PORTB0); break;} // set as input
+		case 15: // (PIN15 = PB1)
+		{	DDRB &= ~(1<<PORTB1); break;} // set as input
+		case 16: // (PIN16 = PB2)
+		{	DDRB &= ~(1<<PORTB2); break;} // set as input
+		case 17: // (PIN17 = PB3)
+		{	DDRB &= ~(1<<PORTB3); break;} // set as input
+		case 18: // (PIN18 = PB4)
+		{	DDRB &= ~(1<<PORTB4); break;} // set as input
+		case 19: // (PIN19 = PB5)
+		{	DDRB &= ~(1<<PORTB5); break;} // set as input
+	}		
+}
+
+
+// sets pin as input by writing 0 to DDRC register
+void cportIn(uint8_t pin)
+{
+    // set pin as input
+	switch(pin)
+	{
+		case 1: // (PIN1 = PC6)
+		{	DDRC &= ~(1<<PORTC6); break;} // set as input
+		case 23: // (PIN23 = PC0)
+		{	DDRC &= ~(1<<PORTC0); break;} // set as input
+		case 24: // (PIN24 = PC1)
+		{	DDRC &= ~(1<<PORTC1); break;} // set as input
+		case 25: // (PIN25 = PC2)
+		{	DDRC &= ~(1<<PORTC2); break;} // set as input
+		case 26: // (PIN26 = PC3)
+		{	DDRC &= ~(1<<PORTC3); break;} // set as input
+		case 27: // (PIN27 = PC4)
+		{	DDRC &= ~(1<<PORTC4); break;} // set as input
+		case 28: // (PIN28 = PC5)
+		{	DDRC &= ~(1<<PORTC5); break;} // set as input
+	}		
+}
+
+
+// sets pin as input by writing 0 to DDRD register
+void dportIn(uint8_t pin)
+{
+	// set pin as input
+	switch(pin)
+	{
+		case 2: // (PIN2 = PD0)
+		{	DDRD &= ~(1<<PORTD0); break;} // set as input
+		case 3: // (PIN3 = PD1)
+		{	DDRD &= ~(1<<PORTD1); break;} // set as input
+		case 4: // (PIN4 = PD2)
+		{	DDRD &= ~(1<<PORTD2); break;} // set as input
+		case 5: // (PIN5 = PD3)
+		{	DDRD &= ~(1<<PORTD3); break;} // set as input
+		case 6: // (PIN6 = PD4)
+		{	DDRD &= ~(1<<PORTD4); break;}  // set as input
+		case 11: // (PIN11 = PD5)
+		{	DDRD &= ~(1<<PORTD5); break;} // set as input
+		case 12: // (PIN12 = PD6)
+		{	DDRD &= ~(1<<PORTD6); break;} // set as input
+		case 13: // (PIN13 = PD7)
+		{	DDRD &= ~(1<<PORTD7); break;} // set as input
+	}		
+}
+
+
+
+
+
+

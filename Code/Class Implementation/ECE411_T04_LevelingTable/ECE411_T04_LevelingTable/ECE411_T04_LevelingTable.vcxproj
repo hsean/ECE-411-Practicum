@@ -65,18 +65,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Accelerometer.h" />
+    <ClInclude Include="Dotstar.h" />
     <ClInclude Include="LED.h" />
     <ClInclude Include="LEDStrip.h" />
     <ClInclude Include="ServoController.h" />
     <ClInclude Include="SystemManager.h" />
+    <ClInclude Include="Wire.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Accelerometer.cpp" />
+    <ClCompile Include="Dotstar.cpp" />
     <ClCompile Include="LED.cpp" />
     <ClCompile Include="LEDStrip.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ServoController.cpp" />
     <ClCompile Include="SystemManager.cpp" />
+    <ClCompile Include="Wire.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

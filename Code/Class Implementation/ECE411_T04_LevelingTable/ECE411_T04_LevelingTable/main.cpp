@@ -7,6 +7,7 @@
  *       used for this application
  *******************************************************************************/
 #include "SystemManager.h"
+#include "Dotstar.h"
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
@@ -23,13 +24,16 @@ void LEDTest();
 void LEDStripTest();
 void accelTest();
 void servoControllerTest();
+void dotstarTest();
 void printAccel(CAccelerometer* accel);
 void printLEDStrip(CLEDStrip* LEDStrip, int numLEDs);
 void printAccel(CAccelerometer* accel);
 void printServoController(CServoController* myServos);
+void printDotstar(CDotstar* pixels);
 
 int main()
 {
+	/*
 	LEDTest();  // run LED class tests
 
 #ifdef VERBOSE
@@ -49,12 +53,20 @@ int main()
 	accelTest();  // run Accelerometer class tests
 
 #ifdef VERBOSE
-#ifdef WINDOWS
-	system("PAUSE");
-#endif
+	#ifdef WINDOWS
+		system("PAUSE");
+	#endif
 #endif
 
 	servoControllerTest();  // run servoController class tests
+	*/
+
+	dotstarTest();  // run dotstar class tests
+#ifdef VERBOSE
+	#ifdef WINDOWS
+		system("PAUSE");
+	#endif
+#endif	
 
 	// exit program
 	cout << "All tests complete" << endl;
@@ -327,4 +339,48 @@ void printServoController(CServoController* myServos)
 		<< ", AC:" << myServos->getAcceleration() << endl;
 }
 
- 
+
+//**************************************************
+// This function tests the CDotstar class 
+//**************************************************
+void dotstarTest()
+{
+	uint16_t numPixels = 4;
+	uint8_t dataPin = 4;
+	uint8_t clockPin = 5;
+	uint32_t color = 0x0;
+	CDotstar LEDStrip(numPixels, dataPin, clockPin);
+
+	LEDStrip.begin();  // initialize pins
+	LEDStrip.show();   // send data to LEDs
+
+	// check that all LEDs are 0
+	printDotstar(&LEDStrip);
+
+	// Set all LEDs to 1
+	color = 0x010101;
+	for (int i = 0; i < numPixels; ++i)
+	{
+		LEDStrip.setPixelColor(i, color);
+		LEDStrip.show();
+	}
+
+	// check that all LEDs are 1
+	printDotstar(&LEDStrip);
+
+	// clear and check that all LEDs are 0 again
+	LEDStrip.clear();
+	printDotstar(&LEDStrip);
+}
+
+
+void printDotstar(CDotstar* pixels)
+{
+	// print out each pixel
+	for (int i = 0; i < pixels->getNumPixels(); ++i)
+	{
+		cout << "LED" << i + 1 << ": R=" << (int)pixels->getPixels(i, RED_SUBPIXEL)
+			<< ", G=" << (int)pixels->getPixels(i, GREEN_SUBPIXEL)
+			<< ", B=" << (int)pixels->getPixels(i, BLUE_SUBPIXEL) << endl;
+	}
+}
