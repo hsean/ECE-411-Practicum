@@ -83,10 +83,8 @@ public:
 	uint32_t packColor(uint8_t red, uint8_t green, uint8_t blue);
 
 	//*************************************************
-	// Desc: convert individual subpixel to packed form
-	// Param: red   - 8-bit sub-pixel color
-	//        blue  - 8-bit sub-pixel color
-	//        green - 8-bit sub-pixel color
+	// Desc: get color of pixel in packed form
+	// Param: pixelPos - pixel to get color of
 	// Ret: packed form of RGB pixels
 	//*************************************************
 	uint32_t getPixelColor(uint16_t pixelPos) const;
