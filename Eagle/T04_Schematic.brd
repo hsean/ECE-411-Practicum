@@ -1869,38 +1869,38 @@ Please make sure your boards conform to these design rules.</description>
 <element name="DRAGON_ISP" library="pinhead" package="2X03" value="2x3" x="37.084" y="35.56" smashed="yes" rot="R90">
 <attribute name="NAME" x="34.544" y="30.607" size="0.635" layer="25" ratio="10"/>
 </element>
-<element name="LED1" library="led" package="1206" value="TBD Voltage" x="3.81" y="27.432" smashed="yes" rot="R180">
+<element name="LED1" library="led" package="1206" value="G - 2.1V" x="3.81" y="27.432" smashed="yes" rot="R180">
 <attribute name="NAME" x="1.778" y="25.654" size="0.635" layer="25"/>
 </element>
-<element name="LED2" library="led" package="1206" value="TBD Voltage" x="3.81" y="30.48" smashed="yes" rot="R180">
+<element name="LED2" library="led" package="1206" value="Y - 2.2V" x="3.81" y="30.48" smashed="yes" rot="R180">
 <attribute name="NAME" x="1.778" y="28.702" size="0.635" layer="25"/>
 </element>
-<element name="LED3" library="led" package="1206" value="TBD Voltage" x="3.81" y="33.528" smashed="yes" rot="R180">
+<element name="LED3" library="led" package="1206" value="Y - 2.2V" x="3.81" y="33.528" smashed="yes" rot="R180">
 <attribute name="NAME" x="1.778" y="31.75" size="0.635" layer="25"/>
 </element>
-<element name="LED4" library="led" package="1206" value="TBD Voltage" x="3.81" y="36.576" smashed="yes" rot="R180">
+<element name="LED4" library="led" package="1206" value="R - 1.7V" x="3.81" y="36.576" smashed="yes" rot="R180">
 <attribute name="NAME" x="1.778" y="34.798" size="0.635" layer="25"/>
 </element>
-<element name="LED5" library="led" package="1206" value="TBD Voltage" x="3.81" y="14.478" smashed="yes" rot="R180">
+<element name="LED5" library="led" package="1206" value="B - 3.2V" x="3.81" y="14.478" smashed="yes" rot="R180">
 <attribute name="NAME" x="1.778" y="15.748" size="0.635" layer="25"/>
 </element>
-<element name="R3" library="rcl" package="R1206" value="TBD Resistance" x="10.16" y="27.432" smashed="yes" rot="R180">
+<element name="R3" library="rcl" package="R1206" value="68 Ohms" x="10.16" y="27.432" smashed="yes" rot="R180">
 <attribute name="NAME" x="8.382" y="25.654" size="0.635" layer="25"/>
 <attribute name="VALUE" x="11.43" y="29.972" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="R4" library="rcl" package="R1206" value="TBD Resistance" x="10.16" y="30.48" smashed="yes" rot="R180">
+<element name="R4" library="rcl" package="R1206" value="56 Ohms" x="10.16" y="30.48" smashed="yes" rot="R180">
 <attribute name="NAME" x="8.382" y="28.702" size="0.635" layer="25"/>
 <attribute name="VALUE" x="11.43" y="33.02" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="R5" library="rcl" package="R1206" value="TBD Resistance" x="10.16" y="33.528" smashed="yes" rot="R180">
+<element name="R5" library="rcl" package="R1206" value="56 Ohms" x="10.16" y="33.528" smashed="yes" rot="R180">
 <attribute name="NAME" x="8.382" y="31.75" size="0.635" layer="25"/>
 <attribute name="VALUE" x="11.43" y="36.068" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="R6" library="rcl" package="R1206" value="TBD Resistance" x="10.16" y="36.576" smashed="yes" rot="R180">
+<element name="R6" library="rcl" package="R1206" value="82 Ohms" x="10.16" y="36.576" smashed="yes" rot="R180">
 <attribute name="NAME" x="8.382" y="34.798" size="0.635" layer="25"/>
 <attribute name="VALUE" x="11.43" y="39.116" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="R7" library="rcl" package="R1206" value="TBD Resistance" x="10.16" y="14.478" smashed="yes" rot="R180">
+<element name="R7" library="rcl" package="R1206" value="150 Ohms" x="10.16" y="14.478" smashed="yes" rot="R180">
 <attribute name="NAME" x="8.128" y="15.748" size="0.635" layer="25"/>
 <attribute name="VALUE" x="11.43" y="17.018" size="1.27" layer="27" rot="R180"/>
 </element>

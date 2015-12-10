@@ -30,6 +30,12 @@
     <ClInclude Include="LED.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dotstar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SystemManager.cpp">
@@ -48,6 +54,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dotstar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
