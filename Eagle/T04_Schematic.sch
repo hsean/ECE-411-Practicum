@@ -9249,14 +9249,14 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="C4" library="rcl" deviceset="C-EU" device="C1206" value="100 nF"/>
 <part name="C3" library="rcl" deviceset="C-EU" device="C1206" value="100 nF"/>
-<part name="LED1" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
-<part name="LED2" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
-<part name="LED3" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
-<part name="LED4" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
-<part name="R3" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="R4" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="R5" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="R6" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
+<part name="LED1" library="led" deviceset="LED" device="SMT1206" value="G - 2.1V"/>
+<part name="LED2" library="led" deviceset="LED" device="SMT1206" value="Y - 2.2V"/>
+<part name="LED3" library="led" deviceset="LED" device="SMT1206" value="Y - 2.2V"/>
+<part name="LED4" library="led" deviceset="LED" device="SMT1206" value="R - 1.7V"/>
+<part name="R3" library="rcl" deviceset="R-US_" device="R1206" value="68 Ohms"/>
+<part name="R4" library="rcl" deviceset="R-US_" device="R1206" value="56 Ohms"/>
+<part name="R5" library="rcl" deviceset="R-US_" device="R1206" value="56 Ohms"/>
+<part name="R6" library="rcl" deviceset="R-US_" device="R1206" value="82 Ohms"/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="VCC_6V_1" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
 <part name="VCC_6V_2" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
@@ -9264,8 +9264,8 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="VCC_6V_4" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
 <part name="VCC_6V_5" library="Taylor_Griffin_T04" deviceset="VCC_6V" device=""/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
-<part name="R7" library="rcl" deviceset="R-US_" device="R1206" value="TBD Resistance"/>
-<part name="LED5" library="led" deviceset="LED" device="SMT1206" value="TBD Voltage"/>
+<part name="R7" library="rcl" deviceset="R-US_" device="R1206" value="150 Ohms"/>
+<part name="LED5" library="led" deviceset="LED" device="SMT1206" value="B - 3.2V"/>
 <part name="OSC1" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US" value="16 MHz"/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C1206" value="22pF"/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C1206" value="22pF"/>
