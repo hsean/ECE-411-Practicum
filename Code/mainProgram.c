@@ -9,27 +9,30 @@
  */
 
 
-#define F_CPU 8000000    // AVR clock frequency in Hz, used by util/delay.h
+#define F_CPU 16000000    // AVR clock frequency in Hz, used by util/delay.h
 #include <avr/io.h>
 #include <util/delay.h>
 #include <math.h>
+#include "Dotstar.h"
 
 
 //definitions
-#define MIN_ANGLE 0                                 //minimum servo angle
-#define MAX_ANGLE 180                               //maximum servo angle
-#define PWM_MIN 800                                 //minimum servo pulse width modulation value
-#define PWM_MAX 2400                                //maximum servo pulse width modulation value
-#define ACCL_SLV_ADDR 0X3A                          //slave address of accelerometer
-#define ACCL_CTRL_REG1 0X2A                         //address of accelerometer control register
-#define ACCL_OUT_X_MSB 0x01                         //address of accelerometer x msb register
-#define ACCL_NUM_SAMPLE 20                          //number of times to sample the accelerometer
-#define USART_FOSC 8000000                          //frequency of the ATmega328 oscillator
-#define USART_BAUD 9600                             //target baud rate
+#define MIN_ANGLE 0                                             //minimum servo angle
+#define MAX_ANGLE 180                                           //maximum servo angle
+#define PWM_MIN 2400                                            //minimum servo pulse width modulation value
+#define PWM_MAX 800                                             //maximum servo pulse width modulation value
+#define ACCL_SLV_ADDR 0X3A                                      //slave address of accelerometer
+#define ACCL_CTRL_REG1 0X2A                                     //address of accelerometer control register
+#define ACCL_OUT_X_MSB 0x01                                     //address of accelerometer x msb register
+#define ACCL_NUM_SAMPLE 400                                     //number of times to sample the accelerometer
+#define USART_FOSC 16000000                                     //frequency of the ATmega328 oscillator
+#define USART_BAUD 9600                                         //target baud rate
 #define USART_MYUBRR ((USART_FOSC / (16 * USART_BAUD)) - 1)     //calculation of the value to input into the USART baud rate register
-#define USART_NUM_SERVOS 0x03                       //number of servos
-#define USART_START_SERVO_CHANNEL 0x00              //starting channel of servos (servos should be placed in successive channels)
-#define SERVO_MV_DELAY_MS 5                         //delay to allow servos to move
+#define USART_NUM_SERVOS 0x03                                   //number of servos
+#define USART_START_SERVO_CHANNEL 0x00                          //starting channel of servos (servos should be placed in successive channels)
+#define SERVO_MV_DELAY_MS 20                                    //delay to allow servos to move
+#define SERVO_HOME 67                                           //center of servo's range of motion (determined by the height the servo can move the tray)
+#define M_PI 3.14159265358979323846                             //pi
 
 
 //prototypes
@@ -51,7 +54,12 @@ int ConvertData(uint8_t dataByte);
 void InitAcclerometer();
 void InitServocontroller();
 void SampleAccelerometer(int * x, int * y, int * z);
-uint16_t AngleToPWM(int angle);
+unsigned short AngleToPWM(int angle);
+void PositionSetup(float heightMap[]);
+float dToR(int deg);
+int sort(float target, float heightMap[]);
+void servoFix(int x, int y, float table[], struct Dotstar * strip);
+void LED_strip_thing(int s0, int s1, int s2, struct Dotstar * strip);
 
 
 /*
@@ -59,59 +67,344 @@ uint16_t AngleToPWM(int angle);
  */
 int main()
 {
-	int x, y, z;
-	int * servoAnglePositions;
+	int x, y, z, i;               //x y z positions, and counter i for LED strip
+	float heightMap[180];         //lookup table containing mapping of servo angle to height positions
 	
-	//temporary stuff
-	DDRD |= (1<<DDD5)|(1<<DDD7);          // set LED pin PD1 to output
+	struct Dotstar * strip = malloc(sizeof(struct Dotstar));     //structure for managing the LED strip
+	
+	
+	//LED strip initialization
+	begin(strip);
+	clear(strip);
+	
+	//loop through each of the LEDs in the strip (15 of them) to set the colors
+	for (i = 0; i < 15; ++i)
+	{
+		setPixelColor(strip, i, 0x270027);
+	}
+	
+	//output to the strip 
+	show(strip);
+
+	
+	//Set Status LEDs as outputs
+	DDRD |= (1<<DDD4)|(1<<DDD5)|(1<<DDD6)|(1<<DDD7);
+	
 	
     //Initialize USART and set servos to home position
 	InitServocontroller();
 	
-	//UPDATE STATUS LEDS
+	
+	//Fill the table with the angle to tray height values
+	PositionSetup(heightMap);
+	
 	
 	//Initialize accelerometer
 	InitAcclerometer();
 
-	//UPDATE STATUS LEDS
 	
 	while(1)
 	{
 		//Sample accelerometer
-		SampleAccelerometer(&x, &y, &z);
-		if(fabs(x) >= 45)
-			PORTD |= (1<<PORTD5);   // drive PD1 high
-		else
-			PORTD &= ~(1<<PORTD5);  // drive PD1 low
+		SampleAccelerometer(&x, &y, &z);		
 		
-		if(fabs(y) >= 45)
+		//Set green and red LEDs to output if x or y limit have been reached
+		if(fabs(x) >= 15)
+			PORTD |= (1<<PORTD4);   // drive PD1 high
+		else
+			PORTD &= ~(1<<PORTD4);  // drive PD1 low
+		
+		if(fabs(y) >= 15)
 			PORTD |= (1<<PORTD7);   // drive PD1 high
 		else
 			PORTD &= ~(1<<PORTD7);  // drive PD1 low
-		//UPDATE STATUS LEDS
-		
-		//SERVO POSITION CALCULATION
-
-		//Send positions to servos
-		for(i = 10; i < 90; i += 10)
-		{
-			USARTSetTarget(i,0x00);
-			USARTSetTarget(i,0x01);
-			USARTSetTarget(i,0x02);
-			_delay_ms(20);     //servo movement delay
-		}
 		
 		
-		//UPDATE STATUS LEDS
-		
-		//UPDATE LED STRIPS
-		
-		//UPDATE STATUS LEDS
-		
-		_delay_ms(5);     //servo movement delay
+		//Servo adjustment
+		servoFix(x, y, heightMap, strip);
 	}
 	
 	return 0;	
+}
+
+
+/*
+ * Performs adjustment for servos and provides input on what the LED strip will need to output
+ * Input: x - x axis angle of device tilt
+ *        y - y axis angle of device tilt
+ *        table - lookup table of servo angle to tray height values
+ *        strip - structure managing the LED strip
+ */
+void servoFix(int x, int y, float table[], struct Dotstar * strip)
+{
+	int home = SERVO_HOME;     //angle of the servos' home position
+	
+	//static variables holding the previous servo arm angles
+	static int s0prev = SERVO_HOME;
+	static int s1prev = SERVO_HOME;
+	static int s2prev = SERVO_HOME;
+	
+	//current distance servos need to offset to reach a level table
+	float s0, s1, s2;
+	
+	//the angles that the servos need to move their arms to
+	int s0angle;
+	int s1angle, s2angle;
+	
+	//distance servos 1 and 2 need to be offset by in the x and y axis directions to reach a level table
+	float s12x = 6.7 * tan(dToR(x));
+	float s12y = 3.8683 * tan(dToR(y));
+	
+	//total distance the servos need to adjust for in order to be at a level position
+	s0 = table[home] + (7.7365 * tan(dToR(y)));
+	s1 = table[home] - s12y - s12x;
+	s2 = table[home] - s12y + s12x;
+	
+	//search in the table to find the corresponding servo angles to move the tray to the correct distance from the servo
+	s0angle = sort(s0, table);
+	s1angle = sort(s1, table);
+	s2angle = sort(s2, table);
+	
+	//update the LED strip with the servo arm angle adjustment
+	LED_strip_thing(s0angle, s1angle, s2angle, strip);	
+	
+	//servo jitter prevention
+	if(fabs(s0angle - s0prev) > 4)
+	{
+		USARTSetTarget(s0angle, 0x00);
+	}
+	
+	if(fabs(s1angle - s1prev) > 4)
+	{
+		USARTSetTarget(s1angle, 0x01);
+	}
+		
+	if(fabs(s2angle - s2prev) > 4)
+	{
+		USARTSetTarget(s2angle, 0x02);
+	}
+	
+	//set the previous servo angles to the current servo angles
+	s0prev = s0angle;
+	s1prev = s1angle;
+	s2prev = s2angle;
+	
+	//delay to allow servos time to move
+	_delay_ms(SERVO_MV_DELAY_MS);
+	
+	return;
+}
+
+
+// group_1 = 0-4
+// group_2 = 5-9
+// group_3 = 10-14
+
+// s0 = 14-12, 0-2
+// s1 = 10-12, 9-7
+// s2 = 4-2, 5-7
+
+// 3 degrees per color value
+void LED_strip_thing(int s0, int s1, int s2, struct Dotstar * strip)
+{	
+	uint32_t home_color = 0x27;
+	uint32_t color = 0x000000;
+	uint32_t color_2 = 0x000000;
+	uint32_t red = 0x00;
+	uint32_t blue = 0x00;
+	
+	//////////////////////////////////////////////////////
+	
+    int test0 = SERVO_HOME - s0;
+	red = home_color - (test0 / 3);
+	blue = home_color + (test0 / 3);
+	
+	color = (blue << 16) | red;
+	color_2 = ((blue - 0x09) << 16) | (red - 0x09);
+	
+	setPixelColor(strip, 14, color);
+	setPixelColor(strip, 13, color_2);
+	setPixelColor(strip, 0, color);
+	setPixelColor(strip, 1, color_2);
+	
+	//////////////////////////////////////////////////////
+	
+	int test1 = SERVO_HOME - s1;
+	red = home_color - (test1 / 3);
+	blue = home_color + (test1 / 3);
+	
+	color = (blue << 16) | red;
+	color_2 = ((blue - 0x09) << 16) | (red - 0x09);
+	
+	setPixelColor(strip, 10, color);
+	setPixelColor(strip, 11, color_2);
+	setPixelColor(strip, 9, color);
+	setPixelColor(strip, 8, color_2);
+	
+	//////////////////////////////////////////////////////
+	
+	int test2 = SERVO_HOME - s2;
+	red = home_color - (test2 / 3);
+	blue = home_color + (test2 / 3);
+
+	color = (blue << 16) | red;
+	color_2 = ((blue - 0x09) << 16) | (red - 0x09);
+	
+	setPixelColor(strip, 4, color);
+	setPixelColor(strip, 3, color_2);
+	setPixelColor(strip, 5, color);
+	setPixelColor(strip, 6, color_2);
+	
+	show(strip);
+}
+
+
+/*
+ * Fill a lookup table with servo angle to tray height mappings
+ * Input: heightMap - Array to fill
+ */
+void PositionSetup(float heightMap[])
+{
+	int degree;        //servo angle in degrees
+	float rad = 0;     //servo angle in radians
+	float x = 0;       //servo arm position on x axis
+	float y = 0;       //servo arm position on y axis
+	float y2 = 0;      //rod end position on y axis
+
+	//loop for all servo angles from 0 to 180 degrees (need to offset by 270 degrees for perception of where 0 degrees is: for using sin and cos, 0 degrees is located at 3 o clock, our perception of servo arm angle 0 degrees is located at 6 o clock)
+	for (degree = 270; degree <= 450; ++degree)
+	{
+		//Convert to radians for math functions.
+		rad = dToR(degree);
+
+		// Find servo arm X pos.
+		x = 2.34 * cos(rad);
+		// Find servo arm y pos.
+		y = 2.34 * sin(rad);
+		// Find rod height.
+		y2 = sqrt(49.0 - pow(4.0876 - x, 2));
+
+		heightMap[degree - 270] = y2 + y;
+		
+		return;
+	}
+}
+
+
+
+// Convert from degrees to radians.
+float dToR(int deg)
+{
+	return (2 * M_PI * deg) / 360;
+}
+
+
+/*
+ * search function to find a servo angle for a given target distance the servo needs to be in
+ * Inputs: target - y position you want the servo to move to
+ *         heightMap - the table you are searching through
+ * Output: the closest angle of the servo arm that corresponds to the given height
+ */
+int sort(float target, float heightMap[])
+{
+	int mid = 0;     //middle of the search table
+	int min = 0;     //minimum of the search table
+	int max = 120;   //maximum of the search table
+
+	//repeat until the minimum and maximum of the table converge
+	while (min <= max)
+	{
+		//go to the middle point of the search table
+		mid = (max - min) / 2 + min;
+
+		//check if this is the position we want to the servo to move to, adjust min or max accordingly for next loop if not target position
+		if (mid == min)
+			return mid + 1;
+
+		if (heightMap[mid] == target)
+			return mid;
+		else if (heightMap[mid] < target)
+			min = mid + 1;
+		else
+			max = mid - 1;
+	}
+
+	return min;
+}
+
+
+/*
+ * Sample the accelerometer for the current x y z angle values of the base
+ * Input: x - the location to store the x angle value
+ *        y - the location to store the y angle value
+ *        z - the location to store the z angle value
+ */
+void SampleAccelerometer(int * x, int * y, int * z)
+{
+	int i;
+	uint8_t xByte, yByte, zByte;
+	
+	//initialize x y z to 0
+	(*x) = 0;
+	(*y) = 0;
+	(*z) = 0;
+	
+	//sample the accelerometer multiple times
+	for(i = 0; i < ACCL_NUM_SAMPLE; ++i)
+	{
+		PORTD |= (1<<PORTD5);
+		
+		TWIStart();                           //send start condition
+		TWIWrite(ACCL_SLV_ADDR);              //slave address with R/W bit set to 0 (write)
+		TWIWrite(ACCL_OUT_X_MSB);             //register to read (OUT_X_MSB)
+		TWIStart();                           //repeated start condition
+		TWIWrite((ACCL_SLV_ADDR | 0x01));     //slave address with R/W bit set to 1 (read)
+	
+		xByte = TWIReadACK();     //read x y z data
+		yByte = TWIReadACK();
+		zByte = TWIReadNACK();
+				
+		TWIStop();     //send stop condition
+		
+		PORTD &= ~(1<<PORTD5);
+
+		//Convert accelerometer data into angles
+		(*x) += ConvertData(xByte);
+		(*y) += ConvertData(yByte);
+		(*z) += ConvertData(zByte);
+	}
+	
+	//average the x y z values
+	(*x) /= ACCL_NUM_SAMPLE;
+	(*y) /= ACCL_NUM_SAMPLE;
+	(*z) /= ACCL_NUM_SAMPLE;
+	
+	return;
+}
+
+
+/*
+ * Convert angle to Pulse Width Modulation value
+ * Input: angle - the angle to convert
+ * Return: the pulse width modulation value stored in two bytes
+ */
+unsigned short AngleToPWM(int angle)
+{
+	unsigned short PWM;     //pulse width modulation value to return
+	float mina = MIN_ANGLE;
+	float maxa = MAX_ANGLE;
+	float minp = PWM_MIN;
+	float maxp = PWM_MAX;
+	
+	//angle definitions incorrect or input out of bounds
+	if ((MAX_ANGLE <= MIN_ANGLE) || (angle < MIN_ANGLE) || (angle > MAX_ANGLE))
+		PWM = -1;
+	
+	//convert to pwm value
+	else
+		PWM = (unsigned short) (((float)angle - mina) * (maxp - minp) / (maxa - mina) + minp);
+	
+	return PWM;
 }
 
 
@@ -156,7 +449,6 @@ void USARTtransmit(uint8_t data)
 	
 	//put data into buffer and send data
 	UDR0 = data;
-	
 	return;
 }
 
@@ -168,7 +460,9 @@ void USARTtransmit(uint8_t data)
  */        
 void USARTSetTarget(int servo_angle, uint8_t channelNum)
 {
-	uint16_t PWM;     //pulse width modulation value
+	unsigned short PWM;     //pulse width modulation value
+	
+	PORTD |= (1<<PORTD6);
 	
 	USARTtransmit(0xAA);     //send the baud rate indication byte to servo controller
 	USARTtransmit(0x0C);
@@ -180,6 +474,8 @@ void USARTSetTarget(int servo_angle, uint8_t channelNum)
 	PWM *= 4;     //wants position in quarter micro seconds
 	USARTtransmit(PWM & 0x7F);     //send least significant byte of servo position
 	USARTtransmit((PWM >> 7) & 0x7F);     //send most significant byte of servo position
+	
+	PORTD &= ~(1<<PORTD6);
 	
 	return;	
 }
@@ -197,7 +493,9 @@ void USARTSetSpeed(uint16_t speed)
 	//repeat for each servo to set speed for (speed should be the same for each servo)
 	for(i; i < max_channel; ++i)
 	{
-		USARTtransmit(0x87);     //speed command byte
+		USARTtransmit(0xAA);
+		USARTtransmit(0x0C);
+		USARTtransmit(0x07);     //speed command byte
 		USARTtransmit(i);     //channel number of servo to control
 		USARTtransmit(speed & 0x7F);     //send least significant byte of speed
 		USARTtransmit((speed >> 7) & 0x7F);     //send most significant byte of speed
@@ -217,7 +515,9 @@ void USARTSetAcceleration(uint16_t acceleration)
 	
 	for(i; i < 0x03; ++i)
 	{
-		USARTtransmit(0x89);     //acceleration command byte
+		USARTtransmit(0xAA);
+		USARTtransmit(0x0C);
+		USARTtransmit(0x09);     //acceleration command byte
 		USARTtransmit(i);     //channel number of servo
 		USARTtransmit(acceleration & 0x7F);     //send least significant byte of acceleration
 		USARTtransmit((acceleration >> 7) & 0x7F);     //send most significant byte of acceleration
@@ -443,10 +743,8 @@ void InitAcclerometer()
 	TWIWrite(ACCL_SLV_ADDR);     //slave address of accelerometer with R/W bit set to 0 (write)
 	TWIWrite(0x2A);              //register to write to: CTRL_REG1 (system control 1 register)
 	
-	/********* IF NOT USING FAST READ MODE ********/
-	/**            TWIWrite(0x21)              **/
-	/**********************************************/
-	TWIWrite(0x23);       //(bit 5 = 1, bit 4 = 0, bit 3 = 0) - data rate to 50 Hz
+	
+	TWIWrite(0x07);       //(bit 5 = 1, bit 4 = 0, bit 3 = 0) - data rate to 50 Hz
 	                      //(bit 1 = 1) - F_READ to fast read mode (ignore lsb registers)
 						  //(bit 0 = 1) - Active mode (turn the accelerometer on)
 						  
@@ -459,75 +757,14 @@ void InitAcclerometer()
  */
 void InitServocontroller()
 {
-	USARTinit();                                                   //initialize ATmega328 USART
-	USARTSetAcceleration(0x00);                                    //max acceleration speed
+	USARTinit();
+	_delay_ms(100);                                                  //initialize ATmega328 USART
+	USARTSetSpeed(0x002A);                                  
+	
+	USARTSetTarget(80, 0x00);
+	USARTSetTarget(80, 0x01);
+	USARTSetTarget(80, 0x02);
+	
 	//USARTSetMutlipleTargets(/*servo1*/,/*servo2*/,/*servo3*/);     //move servos to home position
 	_delay_ms(SERVO_MV_DELAY_MS);                                  //servo movement delay
-}
-
-
-/*
- * Sample the accelerometer for the current x y z angle values of the base
- * Input: x - the location to store the x angle value
- *        y - the location to store the y angle value
- *        z - the location to store the z angle value
- */
-void SampleAccelerometer(int * x, int * y, int * z)
-{
-	int i;
-	uint8_t xByte, yByte, zByte;
-	
-	//initialize x y z to 0
-	(*x) = 0;
-	(*y) = 0;
-	(*z) = 0;
-	
-	//sample the accelerometer multiple times
-	for(i = 0; i < ACCL_NUM_SAMPLE; ++i)
-	{
-		TWIStart();                           //send start condition
-		TWIWrite(ACCL_SLV_ADDR);              //slave address with R/W bit set to 0 (write)
-		TWIWrite(ACCL_OUT_X_MSB);             //register to read (OUT_X_MSB)
-		TWIStart();                           //repeated start condition
-		TWIWrite((ACCL_SLV_ADDR | 0x01));     //slave address with R/W bit set to 1 (read)
-	
-		xByte = TWIReadACK();     //read x y z data
-		yByte = TWIReadACK();
-		zByte = TWIReadNACK();
-				
-		TWIStop();     //send stop condition
-
-		//Convert accelerometer data into angles
-		(*x) += ConvertData(xByte);
-		(*y) += ConvertData(yByte);
-		(*z) += ConvertData(zByte);
-	}
-	
-	//average the x y z values
-	(*x) /= ACCL_NUM_SAMPLE;
-	(*y) /= ACCL_NUM_SAMPLE;
-	(*z) /= ACCL_NUM_SAMPLE;
-	
-	return;
-}
-
-
-/*
- * Convert angle to Pulse Width Modulation value
- * Input: angle - the angle to convert
- * Return: the pulse width modulation value stored in two bytes
- */
-uint16_t AngleToPWM(int angle)
-{
-	int PWM;     //pulse width modulation value to return
-	
-	//angle definitions incorrect or input out of bounds
-	if ((MAX_ANGLE <= MIN_ANGLE) || (angle < MIN_ANGLE) || (angle > MAX_ANGLE))
-		PWM = -1;
-	
-	//convert to pwm value
-	else
-		PWM = (angle - MIN_ANGLE) * (PWM_MAX - PWM_MIN) / (MAX_ANGLE - MIN_ANGLE) + PWM_MIN;
-	
-	return (uint16_t) PWM;
 }
