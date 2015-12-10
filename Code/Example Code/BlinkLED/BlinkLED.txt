@@ -1,0 +1,1 @@
+Taken from: https://electrosome.com/blinking-led-atmega32-avr-microcontroller/

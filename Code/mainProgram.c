@@ -32,6 +32,7 @@
 #define USART_START_SERVO_CHANNEL 0x00                          //starting channel of servos (servos should be placed in successive channels)
 #define SERVO_MV_DELAY_MS 20                                    //delay to allow servos to move
 #define SERVO_HOME 67                                           //center of servo's range of motion (determined by the height the servo can move the tray)
+#define SERVO_SPEED 0x002A                                      //servo movement speed limit
 #define M_PI 3.14159265358979323846                             //pi
 
 
@@ -256,6 +257,8 @@ void LED_strip_thing(int s0, int s1, int s2, struct Dotstar * strip)
 	setPixelColor(strip, 6, color_2);
 	
 	show(strip);
+	
+	return;
 }
 
 
@@ -449,6 +452,7 @@ void USARTtransmit(uint8_t data)
 	
 	//put data into buffer and send data
 	UDR0 = data;
+	
 	return;
 }
 
@@ -674,8 +678,8 @@ void TWIGetStatus(int operation)
 
 /*
  * For testing purposes, output the value of a byte through two LEDs
- * REMOVE BEFORE FINAL COMMIT
  */
+ /*
 void GetData(uint8_t data)
 {
 	_delay_ms(500);
@@ -703,6 +707,7 @@ void GetData(uint8_t data)
 	
 	return;
 }
+*/
 
 
 /*
@@ -744,11 +749,14 @@ void InitAcclerometer()
 	TWIWrite(0x2A);              //register to write to: CTRL_REG1 (system control 1 register)
 	
 	
-	TWIWrite(0x07);       //(bit 5 = 1, bit 4 = 0, bit 3 = 0) - data rate to 50 Hz
+	TWIWrite(0x07);       //(bit 5 = 0, bit 4 = 0, bit 3 = 0) - data rate to 800 Hz
+	                      //(bit 4 = 1) reduced noise mode
 	                      //(bit 1 = 1) - F_READ to fast read mode (ignore lsb registers)
 						  //(bit 0 = 1) - Active mode (turn the accelerometer on)
 						  
 	TWIStop();          //send stop condition
+	
+	return;
 }
 
 
@@ -757,14 +765,19 @@ void InitAcclerometer()
  */
 void InitServocontroller()
 {
+	//initialize ATmega328 USART
 	USARTinit();
-	_delay_ms(100);                                                  //initialize ATmega328 USART
-	USARTSetSpeed(0x002A);                                  
 	
-	USARTSetTarget(80, 0x00);
-	USARTSetTarget(80, 0x01);
-	USARTSetTarget(80, 0x02);
+	//slow down servo speeds
+	USARTSetSpeed(SERVO_SPEED);                                  
 	
-	//USARTSetMutlipleTargets(/*servo1*/,/*servo2*/,/*servo3*/);     //move servos to home position
-	_delay_ms(SERVO_MV_DELAY_MS);                                  //servo movement delay
+	//set servos to home position
+	USARTSetTarget(SERVO_HOME, 0x00);
+	USARTSetTarget(SERVO_HOME, 0x01);
+	USARTSetTarget(SERVO_HOME, 0x02);
+	
+	//servo movement delay
+	_delay_ms(SERVO_MV_DELAY_MS);
+	
+	return;
 }
